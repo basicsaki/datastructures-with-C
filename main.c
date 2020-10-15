@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "./c/linkedlist/single/singly.h"
+
 //decleration of functions
 void banner();
 void menu_user_options();
@@ -23,7 +25,8 @@ void main()
         {
         case 1:
             system("clear");
-            singly_submenu();
+            funcmain();
+            menu_user_options();
             // printf("case 1\n");
             break;
         case 0:
@@ -73,15 +76,5 @@ void menu_user_options()
     printf("2. \tDoubly Linked list\n");
     printf("3. \tCircular Linked List\n");
     printf("0. \tExit\n");
-    printf("\n\n");
-}
-
-void singly_submenu()
-{
-    printf("\n\n\nWelcome to Singly linked list\n\n");
-    printf("1. \tCreate a new list\n");
-    printf("2. \tDisplay the list\n");
-    printf("3. \tRandom\n");
-    printf("0. \tBack to main menu\n");
     printf("\n\n");
 }

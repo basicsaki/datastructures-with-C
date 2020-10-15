@@ -4,22 +4,10 @@
 #include <string.h>
 
 //decleration of functions
-void banner();
-void singly_submenu();
-char *banner_text[];
-struct node *create_linked_list(struct node *start, int length);
 
-void clear_menu(char *message);
-
-// struct node *create_linked_list(){};
-
-void display_linked_list();
-
-typedef struct node
-{
-    int payload;
-    struct node *pointer;
-} node;
+#include "implementation/implementation.h"
+#include "traversal/traversal.h"
+#include "banner_menu/bm.h"
 
 //main menu
 void main()
@@ -37,16 +25,16 @@ void main()
         switch (singly_option)
         {
         case 1:
-            clear_menu("Menu options");
+            clear_menu("Menu options", 1);
             free(start);
             node *start = NULL;
             printf("Enter the number of elements you want inside the list\n\n");
             scanf("%d", &list_length);
             start = create_linked_list(start, list_length);
-            clear_menu("Single linked list created");
+            clear_menu("Single linked list created", 1);
             break;
         case 2:
-            clear_menu("Displaying the list! Select another option!");
+            clear_menu("Displaying the list! Select another option!", 1);
             display_linked_list(start);
             break;
         case 0:
@@ -62,67 +50,4 @@ void main()
             break;
         }
     }
-}
-
-char *banner_text[] = {
-    " #####\n"
-    "#     #     #    #    #   ####   #        #   #\n"
-    "#           #    ##   #  #    #  #         # #\n"
-    " #####      #    # #  #  #       #          #\n"
-    "      #     #    #  # #  #  ###  #          #\n"
-    "#     #     #    #   ##  #    #  #          #\n"
-    " #####      #    #    #   ####   ######     #\n"};
-
-//function definations
-void banner()
-{
-    puts(*banner_text);
-}
-
-void singly_submenu()
-{
-    printf("\n\nWelcome to Singly linked list\n\n");
-    printf("1. \tCreate a new list\n");
-    printf("2. \tDisplay the list\n");
-    printf("0. \tExit\n");
-    printf("\n\n");
-}
-
-struct node *create_linked_list(struct node *start, int length)
-{
-    struct node *temp, *p;
-    int user_input, pi;
-    p = start;
-
-    for (int i = 0; i < length; i++)
-    {
-        printf("Enter the element\n\n");
-        scanf("%d", &user_input);
-        printf("user input is %d \n", user_input);
-        temp = (struct node *)malloc(sizeof(struct node));
-        temp->payload = user_input;
-        temp->pointer = p;
-        p = temp;
-    }
-    start = temp;
-    return start;
-}
-
-void display_linked_list(struct node *start)
-{
-    // printf("[");
-    while (start->pointer != NULL)
-    {
-        printf(" %d \t--->\t", start->payload);
-        start = start->pointer;
-    }
-    printf("%d \n\n", start->payload);
-    // printf("inside display linked list\n\n");
-}
-
-void clear_menu(char *message)
-{
-    system("clear");
-    printf("%s\n", message);
-    singly_submenu();
 }

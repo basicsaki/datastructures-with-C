@@ -4,66 +4,51 @@
 #include <string.h>
 
 //decleration of functions
-void banner();
-void menu_user_options();
-void singly_submenu();
-char *banner_text[];
+
+#include "implementation/implementation.h"
+#include "traversal/traversal.h"
+#include "banner_menu/bm.h"
 
 //main menu
-void main()
+void funcmain()
 {
-    int menu_option, exit = 0;
-    banner();
-    menu_user_options();
-    while (exit == 0)
-    {
-        scanf("%d", &menu_option);
+    int singly_option, exitsub = 0;
+    int user_input, list_length = 0; //, exit = 0;
+    node *start = NULL;
 
-        switch (menu_option)
+    single_banner();
+    singly_submenu();
+    while (exitsub == 0)
+    {
+        scanf("%d", &singly_option);
+
+        switch (singly_option)
         {
         case 1:
-            system("clear");
-            singly_submenu();
-            // printf("case 1\n");
+            clear_menu("Menu options", 1);
+            free(start);
+            node *start = NULL;
+            printf("Enter the number of elements you want inside the list\n\n");
+            scanf("%d", &list_length);
+            start = create_linked_list(start, list_length);
+            clear_menu("Single linked list created", 1);
+            break;
+        case 2:
+            clear_menu("Displaying the list! Select another option!", 1);
+            display_linked_list(start);
             break;
         case 0:
-
             // system("clear");
-            exit = 1;
-            printf("\n Bye! Have a good day!\n");
+            exitsub = 1;
+            clear_menu("Main menu", 0);
+            // printf("\n Bye! Have a good day! submenu!\n");
             break;
         default:
             system("clear");
-            menu_user_options();
+            singly_submenu();
             printf("\nPlease enter an option from the list\n");
-
             printf("\n Select a new option\n");
             break;
         }
     }
-}
-
-char *banner_text[] = {
-    " #####"
-    "#     #     #    #    #   ####   #        #   #"
-    "#           #    ##   #  #    #  #         # #"
-    " #####      #    # #  #  #       #          #"
-    "      #     #    #  # #  #  ###  #          #"
-    "#     #     #    #   ##  #    #  #          #"
-    " #####      #    #    #   ####   ######     #"};
-
-//function definations
-void banner()
-{
-    puts(*banner_text);
-}
-
-void singly_submenu()
-{
-    printf("\n\n\nWelcome to Singly linked list\n\n");
-    printf("1. \tCreate a new list\n");
-    printf("2. \tDisplay the list\n");
-    printf("3. \tRandom\n");
-    printf("0. \tBack to main menu\n");
-    printf("\n\n");
 }
