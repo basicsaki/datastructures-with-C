@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "./c/linkedlist/single/singly.h"
+#include "./c/linear/linkedlist/single/singly.h"
 
 //decleration of functions
 void banner();
