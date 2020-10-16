@@ -4,4 +4,4 @@
 void single_banner();
 void singly_submenu();
 
-void clear_menu(char *message, int submenu_show);
+void singly_clear_menu(char *message, int submenu_show);

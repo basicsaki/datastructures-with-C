@@ -16,7 +16,7 @@ struct node *create_linked_list(struct node *start, int length)
         temp->payload = user_input;
         temp->pointer = p;
         p = temp;
-        clear_menu("Added to the list, enter next element", 0);
+        singly_clear_menu("Added to the list, enter next element", 0);
     }
     start = temp;
     return start;

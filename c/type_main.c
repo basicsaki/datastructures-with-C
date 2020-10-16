@@ -10,41 +10,40 @@
 #include "banner_menu/bm.h"
 
 //main menu
-void singlymain()
+void main()
 {
-    int singly_option, exitsub = 0;
+    int singly_option, exit = 0;
     int user_input, list_length = 0; //, exit = 0;
     node *start = NULL;
 
-    single_banner();
+    banner();
     singly_submenu();
-    while (exitsub == 0)
+    while (exit == 0)
     {
         scanf("%d", &singly_option);
 
         switch (singly_option)
         {
         case 1:
-            singly_clear_menu("Menu options", 1);
+            clear_menu("Menu options", 1);
             free(start);
             node *start = NULL;
             printf("Enter the number of elements you want inside the list\n\n");
             scanf("%d", &list_length);
             start = create_linked_list(start, list_length);
-            singly_clear_menu("Single linked list created", 1);
+            clear_menu("Single linked list created", 1);
             break;
         case 2:
-            singly_clear_menu("Displaying the list! Select another option!", 1);
+            clear_menu("Displaying the list! Select another option!", 1);
             display_linked_list(start);
             break;
         case 0:
-            // system("singly_clear");
-            exitsub = 1;
-            singly_clear_menu("Main menu", 0);
-            // printf("\n Bye! Have a good day! submenu!\n");
+            // system("clear");
+            exit = 1;
+            printf("\n Bye! Have a good day!\n");
             break;
         default:
-            system("singly_clear");
+            system("clear");
             singly_submenu();
             printf("\nPlease enter an option from the list\n");
             printf("\n Select a new option\n");
