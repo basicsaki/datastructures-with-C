@@ -17,6 +17,10 @@ void linkedmain()
     while (linkedexit == 0)
     {
         scanf("%d", &linked_option);
+        while (getchar() != '\n')
+        {
+            continue;
+        }
 
         switch (linked_option)
         {
@@ -32,7 +36,7 @@ void linkedmain()
         case 0:
             // system("clear");
             linkedexit = 1;
-            linked_clear_menu("Main menu", 0);
+            linked_clear_menu("Menu", 0);
             // printf("\n Bye! Have a good day! submenu!\n");
             break;
         default:

@@ -18,6 +18,10 @@ void typemain()
     while (typeexit == 0)
     {
         scanf("%d", &type_option);
+        while (getchar() != '\n')
+        {
+            continue;
+        }
 
         switch (type_option)
         {
@@ -35,7 +39,7 @@ void typemain()
         case 0:
             // system("clear");
             typeexit = 1;
-            ds_type_clear_menu("Main menu", 0);
+            ds_type_clear_menu("Main Menu", 0);
             // printf("\n Bye! Have a good day! submenu!\n");
             break;
         default:

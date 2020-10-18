@@ -18,6 +18,10 @@ void linearmain()
     while (linearexit == 0)
     {
         scanf("%d", &linear_option);
+        while (getchar() != '\n')
+        {
+            continue;
+        }
 
         switch (linear_option)
         {
