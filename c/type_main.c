@@ -35,7 +35,7 @@ void main()
             break;
         case 2:
             clear_menu("Displaying the list! Select another option!", 1);
-            display_linked_list(start);
+            display_linked_list(start, "Present linked list");
             break;
         case 0:
             // system("clear");

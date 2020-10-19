@@ -1,5 +1,6 @@
 #include "implementation.h"
 #include "./../banner_menu/bm.h"
+#include "./../traversal/traversal.h"
 
 struct node *create_linked_list(struct node *start, int length)
 {
@@ -9,7 +10,7 @@ struct node *create_linked_list(struct node *start, int length)
 
     for (int i = 0; i < length; i++)
     {
-        printf("Enter element to be inserted in the list \n\n");
+        printf("Enter element to be inserted in the list\n");
         scanf("%d", &user_input);
         // printf("\n%d added to the list \n", user_input);
         temp = (struct node *)malloc(sizeof(struct node));
@@ -25,13 +26,24 @@ struct node *create_linked_list(struct node *start, int length)
 struct node *insertInBeginning(struct node *start, int payload)
 {
     node *temp, *p;
-    // p = start;
+    display_linked_list(start, "Present linked list");
+
     temp = (struct node *)malloc(sizeof(struct node));
+    display_node(temp, "STEP 1:Initialize Temp user element");
+
     temp->payload = payload;
+    display_node(temp, "\nSTEP 2:Set the payload value in temp");
+
     temp->pointer = start;
+    display_node(temp, "\nSTEP 3:Set the temp pointer to previous start element");
+
     start = temp;
+    display_node(start, "\nSTEP 4: Replacing start with new start(temp)");
+
+    display_linked_list(start, "Final linked list");
+
+    press_enter_to_continue();
     return start;
-    // printf("\nPlease enter the payload\n");
 }
 
 struct node *insertAtEnd(node *start, int payload)

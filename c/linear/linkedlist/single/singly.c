@@ -31,11 +31,7 @@ void singlymain()
     int user_input, list_length = 0, index, payload, element;
     node *start = NULL;
     node *check;
-    check = start;
-    if (check == NULL)
-    {
-        printf("c");
-    }
+
     single_banner();
     singly_submenu();
     while (exitsub == 0)
@@ -52,7 +48,7 @@ void singlymain()
             singly_clear_menu("Singly Linked List", 1);
             // free(start);
             // node *start = NULL;
-            printf("Enter the number of elements you want inside the list\n\n");
+            printf("Enter the number of elements you want inside the list\n");
             scanf("%d", &list_length);
             start = create_linked_list(start, list_length);
             singly_clear_menu("Single linked list created", 1);
@@ -61,11 +57,9 @@ void singlymain()
             if (start != NULL)
             {
                 singly_clear_menu("Enter in the beginning of the list", 1);
-                display_linked_list(start);
                 printf("\nPlease enter the payload\n");
                 scanf("%d", &payload);
                 start = insertInBeginning(start, payload);
-                display_linked_list(start);
                 singly_clear_menu("Element added as the first element", 1);
                 break;
             }
@@ -79,11 +73,11 @@ void singlymain()
             {
 
                 singly_clear_menu("Append an element at the end!", 1);
-                display_linked_list(start);
+                display_linked_list(start, "Present linked list");
                 printf("\nPlease enter the payload\n");
                 scanf("%d", &payload);
                 start = insertAtEnd(start, payload);
-                display_linked_list(start);
+                display_linked_list(start, "Present linked list");
                 singly_clear_menu("Element appended", 1);
                 break;
             }
@@ -215,7 +209,7 @@ void singlymain()
             if (start != NULL)
             {
                 singly_clear_menu("Displaying the list! Select another option!", 1);
-                display_linked_list(start);
+                display_linked_list(start, "Present Linked list");
                 break;
             }
             else

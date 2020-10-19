@@ -2,7 +2,7 @@
 
 void singly_submenu()
 {
-    printf("\n\nWelcome to Singly linked list\n\n");
+    printf("Welcome to Singly linked list\n\n");
     printf("1. \tCreate a new list\n");
     printf("2. \tEnter an element in the beginning\n");
     printf("3. \tEnter an element at the end\n");
@@ -14,14 +14,14 @@ void singly_submenu()
     printf("9. \tDelete an element\n");
     printf("10. \tDelete an element at an index\n");
     printf("11. \tDisplay the list\n");
-    printf("0. \tBack\n");
-    printf("\n\n");
+    printf("0. \tBack\n\n");
+    // printf("");
 }
 
 void singly_clear_menu(char *message, int submenu_show)
 {
     system("clear");
-    printf("###############%s#############\n", message);
+    printf("###############%s#############\n\n", message);
     if (submenu_show != 1)
     {
     }
@@ -29,4 +29,17 @@ void singly_clear_menu(char *message, int submenu_show)
     {
         singly_submenu();
     }
+}
+
+void press_enter_to_continue()
+{
+    //To stop the terminal - barely working for linux
+    char ch = 0;
+    printf("\nPress [Enter] to Continue\n");
+    while (ch != '\n' && ch != '\r')
+    {
+        ch = getchar();
+    }
+    ch = 0;
+    getchar();
 }

@@ -1,7 +1,7 @@
 //Preprocessor commands
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <string.h>z
 
 #include "./c/type.h"
 
@@ -85,21 +85,19 @@ void banner()
 
 void top_options()
 {
-    printf("\n\n\nPlease select an option from the list items below\n\n\a");
+    printf("\n\nPlease select an option from the list items below\n");
     printf("1. \tSelect DS Type\n");
     printf("0. \tExit\n");
     printf("\nQuick links\n");
     printf("2. \tLinked list\n");
-    printf("3. \tSingly linked list\n");
-    printf("\n\n");
+    printf("3. \tSingly linked list\n\n");
 }
 
 void menu_user_options()
 {
-    printf("\n\n\nPlease select an option from the list items below\n\n\a");
+    printf("\n\nPlease select an option from the list items below\n\a");
     printf("1. \tSingly Linked list\n");
     printf("2. \tDoubly Linked list\n");
     printf("3. \tCircular Linked List\n");
-    printf("0. \tExit\n");
-    printf("\n\n");
+    printf("0. \tExit\n\n");
 }
