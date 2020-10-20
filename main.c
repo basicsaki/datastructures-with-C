@@ -1,9 +1,11 @@
 //Preprocessor commands
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>z
+#include <string.h>
+#include <getopt.h>
 
 #include "./c/type.h"
+#include "./common.h"
 
 #include "./c/linear/linkedlist/single/singly.h"
 #include "./c/linear/linkedlist/linked.h"
@@ -14,12 +16,33 @@ void top_options();
 void singly_submenu();
 char *banner_text[];
 
+int verboseflag = 0;
+
+void check_input_params(int argc, char **argv)
+{
+    for (int i = 0; i < argc; i++)
+    {
+        if (strcmp(argv[i], "--verbose") == 0)
+        {
+            verboseflag = 1;
+            // printf("Verbose flag value %d", verboseflag);
+        }
+    }
+}
+
+void print_usage()
+{
+    printf("\n USAGE: \n \t main | --verbose(for step wise explanation) \n");
+};
 //main menu
-void main()
+void main(int argc, char **argv)
 {
     int menu_option, exit = 0;
     banner();
+    print_usage();
     top_options();
+    check_input_params(argc, argv);
+
     while (exit == 0)
     {
         scanf("%d", &menu_option);

@@ -11,19 +11,6 @@
 #include "update/update.h"
 #include "banner_menu/bm.h"
 
-int checkIfBlank(struct node *start);
-int checkIfBlank(struct node *start)
-{
-    if (start == NULL)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-};
-
 //main menu
 void singlymain()
 {

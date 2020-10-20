@@ -1,6 +1,7 @@
 #include "implementation.h"
 #include "./../banner_menu/bm.h"
 #include "./../traversal/traversal.h"
+// #include "./../../../../../common.h"
 
 struct node *create_linked_list(struct node *start, int length)
 {
@@ -26,21 +27,21 @@ struct node *create_linked_list(struct node *start, int length)
 struct node *insertInBeginning(struct node *start, int payload)
 {
     node *temp, *p;
-    display_linked_list(start, "Present linked list");
+    verboseflag == 1 ? display_linked_list(start, "Present linked list") : "";
 
     temp = (struct node *)malloc(sizeof(struct node));
-    display_node(temp, "STEP 1:Initialize Temp user element");
+    verboseflag == 1 ? display_node(temp, "STEP 1:Initialize Temp user element") : "";
 
     temp->payload = payload;
-    display_node(temp, "\nSTEP 2:Set the payload value in temp");
+    verboseflag == 1 ? display_node(temp, "\nSTEP 2:Set the payload value in temp") : "";
 
     temp->pointer = start;
-    display_node(temp, "\nSTEP 3:Set the temp pointer to previous start element");
+    verboseflag == 1 ? display_node(temp, "\nSTEP 3:Set the temp pointer to previous start element") : "";
 
     start = temp;
-    display_node(start, "\nSTEP 4: Replacing start with new start(temp)");
+    verboseflag == 1 ? display_node(start, "\nSTEP 4: Replacing start with new start(temp)") : "";
 
-    display_linked_list(start, "Final linked list");
+    verboseflag == 1 ? display_linked_list(start, "Final linked list") : "";
 
     press_enter_to_continue();
     return start;

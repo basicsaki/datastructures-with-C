@@ -12,10 +12,10 @@ void display_linked_list(struct node *start, char *message)
     }
     while (p->pointer != NULL)
     {
-        printf("%d(MemLocation: %p)-Pointer(: %p)  --->  ", p->payload, &p->payload, p->pointer);
+        verboseflag == 0 ? printf("%d  --->  ", p->payload) : printf("%d(MemLocation: %p)-Pointer(: %p)  --->  ", p->payload, &p->payload, p->pointer);
         p = p->pointer;
     }
-    printf("%d(MemLocation: %p)-Pointer(: %p)\n\n", p->payload, &p->payload, p->pointer);
+    verboseflag == 0 ? printf("%d\n\n", p->payload) : printf("%d(MemLocation: %p)-Pointer(: %p)\n\n", p->payload, &p->payload, p->pointer);
 }
 
 void display_node(struct node *start, char *message)
@@ -26,5 +26,5 @@ void display_node(struct node *start, char *message)
         printf("Node is empty\n");
         return;
     }
-    printf("%d(MemLocation: %p)-Pointer(: %p)\t\n", start->payload, &start->payload, start->pointer);
+    verboseflag == 0 ? printf("%d\t\n", start->payload) : printf("%d(MemLocation: %p)-Pointer(: %p)\t\n", start->payload, &start->payload, start->pointer);
 }
