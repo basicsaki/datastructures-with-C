@@ -108,6 +108,12 @@ struct node *insertAtPosition(node *start, int index, int payload)
     p = start;
     verboseflag == 1 ? display_node(p, "\nSTEP 1: Initialize p node as a copy of the start node for list traversal") : "";
 
+    if (index == 0)
+    {
+        start = insertInBeginning(start, payload);
+        return start;
+    }
+
     for (position; position < (index - 1); position++)
     {
         if (p->pointer == NULL)
