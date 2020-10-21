@@ -1,6 +1,6 @@
 #include "traversal.h"
 
-void display_linked_list(struct node *start, char *message)
+void circular_display_linked_list(struct node *start, char *message)
 {
     printf("\n%s\n", message);
     struct node *p;
@@ -18,7 +18,7 @@ void display_linked_list(struct node *start, char *message)
     verboseflag == 0 ? printf("%d\n\n", p->payload) : printf("%d(MemLocation: %p)-Pointer(: %p)\n\n", p->payload, &p->payload, p->pointer);
 }
 
-void display_node(struct node *start, char *message)
+void circular_display_node(struct node *start, char *message)
 {
     printf("\n%s\n", message);
     if (start == NULL)

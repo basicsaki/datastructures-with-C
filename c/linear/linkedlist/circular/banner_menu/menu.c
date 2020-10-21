@@ -1,8 +1,8 @@
 #include "bm.h"
 
-void singly_submenu()
+void circular_submenu()
 {
-    printf("Welcome to Singly linked list\n\n");
+    printf("Welcome to circular linked list\n\n");
     printf("1. \tCreate a new list\n");
     printf("2. \tEnter an element in the beginning\n");
     printf("3. \tEnter an element at the end\n");
@@ -18,7 +18,7 @@ void singly_submenu()
     // printf("");
 }
 
-void singly_clear_menu(char *message, int submenu_show)
+void circular_clear_menu(char *message, int submenu_show)
 {
     system("clear");
     printf("###############%s#############\n\n", message);
@@ -27,6 +27,6 @@ void singly_clear_menu(char *message, int submenu_show)
     }
     else
     {
-        singly_submenu();
+        circular_submenu();
     }
 }

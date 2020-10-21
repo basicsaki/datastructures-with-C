@@ -8,6 +8,9 @@
 #include "./common.h"
 
 #include "./c/linear/linkedlist/single/singly.h"
+#include "./c/linear/linkedlist/doubly/doubly.h"
+#include "./c/linear/linkedlist/circular/circular.h"
+
 #include "./c/linear/linkedlist/linked.h"
 
 //decleration of functions
@@ -66,7 +69,18 @@ void main(int argc, char **argv)
             singlymain();
             top_options();
             break;
-
+        case 4:
+            // system("clear");
+            system("clear");
+            doublymain();
+            top_options();
+            break;
+        case 5:
+            // system("clear");
+            system("clear");
+            circularmain();
+            top_options();
+            break;
         case 0:
             // system("clear");
             exit = 1;
@@ -113,7 +127,9 @@ void top_options()
     printf("0. \tExit\n");
     printf("\nQuick links\n");
     printf("2. \tLinked list\n");
-    printf("3. \tSingly linked list\n\n");
+    printf("3. \tSingly linked list\n");
+    printf("4. \tDoubly linked list\n");
+    printf("5. \tCircular linked list\n\n");
 }
 
 void menu_user_options()

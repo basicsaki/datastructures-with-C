@@ -6,6 +6,8 @@
 //decleration of functions
 #include "./banner_menu/bm.h"
 #include "./single/singly.h"
+#include "./doubly/doubly.h"
+#include "./circular/circular.h"
 
 //main menu
 void linkedmain()
@@ -30,8 +32,14 @@ void linkedmain()
             linked_clear_menu("Type options", 1);
             break;
         case 2:
-            linked_clear_menu("Displaying the list! Select another option!", 1);
-            printf("inside 2");
+            linked_clear_menu("Type options", 0);
+            doublymain();
+            linked_clear_menu("Type options", 1);
+            break;
+        case 3:
+            linked_clear_menu("Type options", 0);
+            circularmain();
+            linked_clear_menu("Type options", 1);
             break;
         case 0:
             // system("clear");
