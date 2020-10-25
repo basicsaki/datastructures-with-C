@@ -1,21 +1,30 @@
 #include "traversal.h"
 
-void circular_display_linked_list(struct node *start, char *message)
+void circular_display_linked_list(struct node *end, char *message)
 {
     printf("\n%s\n", message);
     struct node *p;
-    p = start;
-    if (start == NULL)
+
+    if (end == NULL)
     {
         printf("List is empty\n");
         return;
     }
-    while (p->pointer != NULL)
+    p = end->pointer;
+
+    do
     {
-        verboseflag == 0 ? printf("%d  --->  ", p->payload) : printf("%d(MemLocation: %p)-Pointer(: %p)  --->  ", p->payload, &p->payload, p->pointer);
+        if (p->pointer == end->pointer)
+        {
+            verboseflag == 0 ? printf("%d \n", p->payload) : printf("%d(MemLocation: %p)-Pointer(: %p)\n\n", p->payload, &p->payload, p->pointer);
+        }
+        else
+        {
+            verboseflag == 0 ? printf("%d  --->  ", p->payload) : printf("%d(MemLocation: %p)-Pointer(: %p)  --->  \n", p->payload, &p->payload, p->pointer);
+        }
+
         p = p->pointer;
-    }
-    verboseflag == 0 ? printf("%d\n\n", p->payload) : printf("%d(MemLocation: %p)-Pointer(: %p)\n\n", p->payload, &p->payload, p->pointer);
+    } while (p != end->pointer);
 }
 
 void circular_display_node(struct node *start, char *message)

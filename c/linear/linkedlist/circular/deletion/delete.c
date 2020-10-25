@@ -2,112 +2,115 @@
 #include "./../traversal/traversal.h"
 #include "./../banner_menu/bm.h"
 
-struct node *circularDeleteAtIndex(struct node *start, int index)
+struct node *circularDeleteAtIndex(struct node *end, int index)
 {
-    verboseflag == 1 ? circular_display_linked_list(start, "Present linked list") : "";
 
-    node *p, *temp;
+    node *temp, *p;
+    //first element
 
-    p = start;
-    verboseflag == 1 ? circular_display_node(p, "STEP 2: Initialize p node as a copy of the start node") : "";
-
-    verboseflag == 1 ? circular_display_node(p, "STEP 3: Check if index is 0") : "";
     if (index == 0)
     {
-        p = start->pointer;
-        verboseflag == 1 ? circular_display_node(p, "STEP 4: Replace p as the node to which start was pointing") : "";
-
-        free(start);
-        verboseflag == 1 ? circular_display_node(p, "STEP 5: Free node at position 0 i.e start element") : "";
-
-        start = p;
-        verboseflag == 1 ? circular_display_node(p, "STEP 6: Replace new start node as node at pointer p") : "";
-
-        verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
-        press_enter_to_continue();
-
-        return start;
+        if (end->pointer == end)
+        {
+            //only element
+            p = NULL;
+            free(end);
+            return p;
+        }
+        else
+        {
+            //long list
+            p = end->pointer->pointer;
+            free(end->pointer);
+            end->pointer = p;
+            return end;
+        }
     }
 
-    for (int position = 0; position < (index - 1); position++)
-    {
-        if (p->pointer == NULL)
-        {
-            printf("No such index in the list");
-            return start;
-        }
+    //any element
+    p = end->pointer;
+    verboseflag == 1 ? circular_display_node(p, "p") : "";
 
+    for (int i = 0; i < index - 1; i++)
+    {
         p = p->pointer;
     }
-    verboseflag == 1 ? circular_display_node(p, "STEP 4: Enumerate to the node at index-1 position(We need the node which points at 'to be deleted node')") : "";
+    verboseflag == 1 ? circular_display_node(p, "p") : "";
+
+    if (end->pointer == p->pointer->pointer)
+    {
+        temp = p->pointer->pointer;
+        free(p->pointer);
+        p->pointer = temp;
+        return p;
+    }
 
     temp = p->pointer->pointer;
-    verboseflag == 1 ? circular_display_node(temp, "STEP 5: TEMP : The node to which the to be deleted node is pointing is saved to a temp node") : "";
-
     free(p->pointer);
-    verboseflag == 1 ? circular_display_node(p, "STEP 6: Free the 'to be deleted node' from memory") : "";
-
     p->pointer = temp;
-    verboseflag == 1 ? circular_display_node(p, "STEP 7: Point p node pointer to the temp pointer that we saved earlier") : "";
-
-    verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
-    press_enter_to_continue();
-
-    return start;
+    return end;
 }
 
-struct node *circularDeleteElement(struct node *start, int element)
+struct node *circularDeleteElement(struct node *end, int element)
 {
-    verboseflag == 1 ? circular_display_linked_list(start, "Present linked list") : "";
+    verboseflag == 1 ? circular_display_linked_list(end, "Present linked list") : "";
 
     node *p, *temp;
     // int position = 0;
-    p = start;
-    verboseflag == 1 ? circular_display_node(p, "STEP 2: Initialize p node as a copy of the start node") : "";
+    p = end;
+    verboseflag == 1 ? circular_display_node(p, "p") : "";
 
-    verboseflag == 1 ? circular_display_node(p, "STEP 3: Check if the node at position 0 has the to be deleted payload") : "";
+    //last element
     if (element == p->payload)
     {
-        p = p->pointer;
-        verboseflag == 1 ? circular_display_node(p, "STEP 4: Replace node p as the node to which p was pointing ie node at index posiion 1") : "";
-
-        free(start);
-        verboseflag == 1 ? circular_display_node(p, "STEP 5: Free memory from the node at position 0") : "";
-
-        start = p;
-        verboseflag == 1 ? circular_display_node(p, "STEP 6: Replace p as the start node") : "";
-
-        verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
-        press_enter_to_continue();
-
-        return start;
-    }
-
-    verboseflag == 1 ? circular_display_node(p, "STEP 4: Enumerate till the element is found in the list - 1 node") : "";
-    while (p->pointer->payload != element)
-    {
-        if (p->pointer->pointer == NULL && p->pointer->payload != element)
+        printf("lst true");
+        //get node pointer which points to the last element
+        while (p->pointer != end)
         {
-            printf("No such element in the list");
-            return start;
+            p = p->pointer;
         }
+        verboseflag == 1 ? circular_display_node(p, "p") : "";
 
-        p = p->pointer;
+        if (p == end)
+        {
+            p = NULL;
+            printf("inside here");
+            free(end);
+            return p;
+        }
+        p->pointer = end->pointer;
+        free(end);
+        verboseflag == 1 ? circular_display_node(p, "p") : "";
+
+        return p;
+    }
+    else if (element == p->pointer->payload)
+    {
+        printf("first true");
+        temp = p->pointer->pointer;
+        verboseflag == 1 ? circular_display_node(p, "p") : "";
+        verboseflag == 1 ? circular_display_node(temp, "temp") : "";
+        free(p->pointer);
+        p->pointer = temp;
+        verboseflag == 1 ? circular_display_node(p, "p") : "";
+        return p;
+    }
+    else
+    {
+        //get node pointer which points to the last element
+        while (p->pointer->payload != element)
+        {
+            p = p->pointer;
+        }
+        printf("random true");
+        verboseflag == 1 ? circular_display_node(p, "p") : "";
+        temp = p->pointer->pointer;
+        verboseflag == 1 ? circular_display_node(temp, "temp") : "";
+        free(p->pointer);
+        p->pointer = temp;
+        verboseflag == 1 ? circular_display_node(p, "p") : "";
+        return end;
     }
 
-    // printf("%d this is the element", p->payload);
-    temp = p->pointer->pointer;
-    verboseflag == 1 ? circular_display_node(temp, "STEP 5: Initialize a temp node as the node next to the 'to be deleted node' ") : "";
-
-    free(p->pointer);
-    verboseflag == 1 ? circular_display_node(p, "STEP 4: Free memory from the 'to be deleted node'") : "";
-
-    p->pointer = temp;
-    verboseflag == 1 ? circular_display_node(p, "STEP 5: Point the p node pointer to the temp node") : "";
-
-    verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
-    press_enter_to_continue();
-
-    // start = p;
-    return start;
+    return end;
 }

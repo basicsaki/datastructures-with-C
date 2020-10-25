@@ -3,255 +3,229 @@
 #include "./../traversal/traversal.h"
 // #include "./../../../../../common.h"
 
-struct node *circular_create_linked_list(struct node *start, int length)
+struct node *circular_create_linked_list(struct node *end, int length)
 {
 
-    struct node *temp, *p;
+    struct node *temp, *p, *start;
     int user_input, pi;
 
-    p = start;
-    verboseflag == 1 ? circular_display_linked_list(start, "STEP 1 : Initialize p node as a copy of the start node") : "";
+    p = end;
+    // verboseflag == 1 ? circular_display_linked_list(end, "STEP 1 : Initialize p node as a copy of the start node") : "";
 
-    verboseflag == 1 ? circular_display_linked_list(start, "STEP 1 : Iterate the number of elements that are to be added") : "";
-    for (int i = 0; i < length; i++)
+    printf("Enter element to be inserted in the list\n");
+    scanf("%d", &user_input);
+    temp = (struct node *)malloc(sizeof(struct node));
+    start = (struct node *)malloc(sizeof(struct node));
+
+    temp->payload = user_input;
+    start = temp;
+    start->pointer = start;
+
+    end = start;
+    for (int i = 0; i < length - 1; i++)
     {
-        verboseflag == 1 ? circular_display_linked_list(p, "Present linked list") : "";
+        verboseflag == 1 ? circular_display_linked_list(end, "Present linked list") : "";
         printf("Enter element to be inserted in the list\n");
         scanf("%d", &user_input);
 
-        temp = (struct node *)malloc(sizeof(struct node));
+        // temp = (struct node *)malloc(sizeof(struct node));
         verboseflag == 1 ? circular_display_linked_list(temp, "STEP : Initialize memory for a temp node (payload + pointer) memory") : "";
+        temp = (struct node *)malloc(sizeof(struct node));
 
         temp->payload = user_input;
-        verboseflag == 1 ? circular_display_linked_list(temp, "STEP : Set the payload value in temp") : "";
+        verboseflag == 1 ? circular_display_node(temp, "STEP temp: Set the payload value in temp") : "";
 
-        temp->pointer = p;
-        verboseflag == 1 ? circular_display_linked_list(temp, "STEP : Set temp pointer to p node") : "";
+        end->pointer = temp;
+        verboseflag == 1 ? circular_display_node(end, "STEP End: Set temp pointer to p node") : "";
 
-        p = temp;
-        verboseflag == 1 ? circular_display_linked_list(p, "STEP : Copy temp node to node p") : "";
+        temp->pointer = start;
+        verboseflag == 1 ? circular_display_node(end, "STEP TEMP: Set temp pointer to p node") : "";
 
-        circular_clear_menu("Added to the list, enter next element", 0);
+        end = temp;
+
+        verboseflag == 1 ? circular_display_node(end, "STEP : Copy temp node to node p") : "";
+
+        // circular_clear_menu("Added to the list, enter next element", 0);
     }
 
-    verboseflag == 1 ? circular_display_linked_list(p, "STEP : Replacing start node with new start(temp node)") : "";
-    start = temp;
+    // while (p->pointer != NULL)
+    // {
+    //     p = p->pointer;
+    // }
+    // temp->pointer = p;
 
-    verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
+    // verboseflag == 1 ? circular_display_linked_list(p, "STEP : Replacing start node with new start(temp node)") : "";
+    // end = temp;
+
+    verboseflag == 1 ? circular_display_linked_list(end, "Final linked list") : "";
     press_enter_to_continue();
 
-    return start;
+    return end;
 }
 
-struct node *circularInsertInBeginning(struct node *start, int payload)
+struct node *circularInsertInBeginning(struct node *end, int payload)
 {
     node *temp, *p;
-    verboseflag == 1 ? circular_display_linked_list(start, "Present linked list") : "";
 
     temp = (struct node *)malloc(sizeof(struct node));
-    verboseflag == 1 ? circular_display_node(temp, "STEP 1:Initialize Temp user element") : "";
 
     temp->payload = payload;
-    verboseflag == 1 ? circular_display_node(temp, "\nSTEP 2: Set the payload value in temp") : "";
+    temp->pointer = end->pointer;
 
-    temp->pointer = start;
-    verboseflag == 1 ? circular_display_node(temp, "\nSTEP 3:Set the temp pointer to previous start node") : "";
+    end->pointer = temp;
 
-    start = temp;
-    verboseflag == 1 ? circular_display_node(start, "\nSTEP 4: Replacing start with new start(temp node)") : "";
+    // verboseflag == 1
+    //     ? circular_display_linked_list(start, "Present linked list")
+    //     : "";
 
-    verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
-    press_enter_to_continue();
+    // verboseflag == 1 ? circular_display_node(temp, "STEP 1:Initialize Temp user element") : "";
 
-    return start;
+    // temp->payload = payload;
+    // verboseflag == 1 ? circular_display_node(temp, "\nSTEP 2: Set the payload value in temp") : "";
+
+    // temp->pointer = start;
+    // verboseflag == 1 ? circular_display_node(temp, "\nSTEP 3:Set the temp pointer to previous start node") : "";
+
+    // start = temp;
+    // verboseflag == 1 ? circular_display_node(start, "\nSTEP 4: Replacing start with new start(temp node)") : "";
+
+    // verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
+    // press_enter_to_continue();
+
+    return end;
 }
 
-struct node *circularInsertAtEnd(node *start, int payload)
+struct node *circularInsertAtEnd(node *end, int payload)
 {
-    node *temp, *p;
-    verboseflag == 1 ? circular_display_linked_list(start, "Present linked list") : "";
+
+    node *temp;
+    verboseflag == 1 ? circular_display_node(end, "STEP TEMP: Set temp pointer to p node") : "";
 
     temp = (struct node *)malloc(sizeof(struct node));
-    verboseflag == 1 ? circular_display_node(temp, "STEP 1:Initialize Temp user element") : "";
-
     temp->payload = payload;
-    verboseflag == 1 ? circular_display_node(temp, "\nSTEP 2: Set the payload value in temp node") : "";
+    temp->pointer = end->pointer;
+    end->pointer = temp;
 
-    temp->pointer = NULL;
-    verboseflag == 1 ? circular_display_node(temp, "\nSTEP 3:Set the temp pointer to null") : "";
+    end = temp;
 
-    p = start;
-    verboseflag == 1 ? circular_display_node(p, "\nSTEP 4: Initialize p node as a copy of the start node for list traversal") : "";
+    // verboseflag == 1 ? circular_display_linked_list(start, "Present linked list") : "";
 
-    while (p->pointer != NULL)
-    {
-        p = p->pointer;
-    }
-    verboseflag == 1 ? circular_display_node(p, "\nSTEP 5:Enumerate to the last node") : "";
+    // verboseflag == 1 ? circular_display_node(temp, "STEP 1:Initialize Temp user element") : "";
 
-    p->pointer = temp;
-    verboseflag == 1 ? circular_display_node(p, "\nSTEP 6:Replace the present last node pointer to our temp node memory address") : "";
+    // temp->payload = payload;
+    // verboseflag == 1 ? circular_display_node(temp, "\nSTEP 2: Set the payload value in temp node") : "";
 
-    verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
-    press_enter_to_continue();
+    // temp->pointer = NULL;
+    // verboseflag == 1 ? circular_display_node(temp, "\nSTEP 3:Set the temp pointer to null") : "";
 
-    return start;
+    // p = start;
+    // verboseflag == 1 ? circular_display_node(p, "\nSTEP 4: Initialize p node as a copy of the start node for list traversal") : "";
+
+    // while (p->pointer != NULL)
+    // {
+    //     p = p->pointer;
+    // }
+    // verboseflag == 1 ? circular_display_node(p, "\nSTEP 5:Enumerate to the last node") : "";
+
+    // p->pointer = temp;
+    // verboseflag == 1 ? circular_display_node(p, "\nSTEP 6:Replace the present last node pointer to our temp node memory address") : "";
+
+    // verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
+    // press_enter_to_continue();
+
+    return end;
 }
 
-struct node *circularInsertAtPosition(node *start, int index, int payload)
+struct node *circularInsertAtPosition(node *end, int index, int payload)
 {
-    verboseflag == 1 ? circular_display_linked_list(start, "Present linked list") : "";
+    verboseflag == 1 ? circular_display_node(end, "STEP TEMP: Set temp pointer to p node") : "";
 
-    node *temp, *p;
-    int position = 0;
+    node *p, *temp;
+    int i = 0;
+    temp = (struct node *)malloc(sizeof(struct node));
+    p = end->pointer;
+    verboseflag == 1 ? circular_display_node(p, "STEP TEMP: Set temp pointer to p node") : "";
 
-    p = start;
-    verboseflag == 1 ? circular_display_node(p, "\nSTEP 1: Initialize p node as a copy of the start node for list traversal") : "";
+    temp->payload = payload;
 
     if (index == 0)
     {
-        start = circularInsertInBeginning(start, payload);
-        return start;
+        temp->pointer = end->pointer;
+        end->pointer = temp;
+        return end;
     }
-
-    for (position; position < (index - 1); position++)
+    else
     {
-        if (p->pointer == NULL)
+        for (i = 0; i < (index - 1); i++)
         {
-            printf("No such index in the list");
-            return start;
+            printf("%d", i);
+            if (p->pointer == end->pointer)
+            {
+                printf("No such index in the list");
+                return end;
+            }
+            p = p->pointer;
         }
+        temp->pointer = p->pointer;
+        p->pointer = temp;
+    }
+    verboseflag == 1 ? circular_display_node(p, "STEP TEMP: Set temp pointer to p node") : "";
+
+    return end;
+}
+
+struct node *circularInsertAfter(node *end, int element, int payload)
+{
+    node *temp, *start, *p;
+    start = (struct node *)malloc(sizeof(struct node));
+    temp = (struct node *)malloc(sizeof(struct node));
+    start = end->pointer;
+    p = start;
+    temp->payload = payload;
+    printf("d %d", p->payload);
+
+    while (p->payload != element)
+    {
+        printf("p %d", p->payload);
+        // printf("p");
         p = p->pointer;
     }
-    verboseflag == 1 ? circular_display_node(p, "\nSTEP 2: Enumerate to the node at index-1 position(We need the node after which we need to add our node") : "";
-
-    temp = (struct node *)malloc(sizeof(struct node));
-    verboseflag == 1 ? circular_display_node(temp, "STEP 3 : Initialize Temp memory") : "";
-
-    temp->payload = payload;
-    verboseflag == 1 ? circular_display_node(temp, "\nSTEP 4: TEMP: Set the payload value in temp") : "";
 
     temp->pointer = p->pointer;
-    verboseflag == 1 ? circular_display_node(temp, "\nSTEP 5: TEMP: Set the temp pointer to p pointer ie to the previous node to which p was pointing") : "";
-
     p->pointer = temp;
-    verboseflag == 1 ? circular_display_node(p, "\nSTEP 6: P : Set the p pointer to temp element") : "";
 
-    verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
-    press_enter_to_continue();
-
-    return start;
+    return end;
 }
 
-struct node *circularInsertAfter(node *start, int element, int payload)
+struct node *circularInsertBefore(node *end, int element, int payload)
 {
-    verboseflag == 1 ? circular_display_linked_list(start, "Present linked list") : "";
-    node *temp, *p;
-    int position = 0;
-
+    node *temp, *start, *p;
+    start = (struct node *)malloc(sizeof(struct node));
+    temp = (struct node *)malloc(sizeof(struct node));
+    start = end->pointer;
     p = start;
-    verboseflag == 1 ? circular_display_node(p, "\nSTEP 1 : Set start value in another node p for list traversal") : "";
+    temp->payload = payload;
+    printf("d %d", p->payload);
 
-    while (p->pointer != NULL)
+    if (p->payload == payload)
     {
-        if (p->payload == element)
+        temp->pointer = p;
+        end->pointer = temp;
+        // p->pointer = temp;
+    }
+    else
+    {
+
+        while (p->pointer->payload != element)
         {
-            break;
-        }
-        else
-        {
-            if (p->pointer->pointer == NULL && p->pointer->payload != element)
-            {
-                printf("No such element in the list");
-                return start;
-            }
+            printf("p %d", p->payload);
+            // printf("p");
             p = p->pointer;
         }
-    };
-    verboseflag == 1 ? circular_display_node(p, "\nSTEP 2 : Enumerate to the node with payload as the input payload and  node location with p") : "";
-
-    temp = (struct node *)malloc(sizeof(struct node));
-    verboseflag == 1 ? circular_display_node(temp, "STEP 3: Initialize Temp memory") : "";
-
-    temp->payload = payload;
-    verboseflag == 1 ? circular_display_node(temp, "\nSTEP 4: TEMP: Set the payload value in temp") : "";
-
-    temp->pointer = p->pointer;
-    verboseflag == 1 ? circular_display_node(temp, "\nSTEP 5: TEMP: Set the temp pointer to p pointer ie to the next node to which p was pointing") : "";
-
-    p->pointer = temp;
-    verboseflag == 1 ? circular_display_node(p, "\nSTEP 6: P: Set the p pointer to the temp location") : "";
-
-    verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
-    press_enter_to_continue();
-
-    return start;
-}
-
-struct node *circularInsertBefore(node *start, int element, int payload)
-{
-    verboseflag == 1 ? circular_display_linked_list(start, "Present linked list") : "";
-    node *temp, *p;
-    int position = 0;
-
-    p = start;
-    verboseflag == 1 ? circular_display_node(p, "\nSTEP 1: Initialize p node as a copy of the start node for list traversal") : "";
-
-    verboseflag == 1 ? circular_display_node(p, "STEP 2: Check if the element is the first element") : "";
-    if (p->payload == element)
-    {
-
-        temp = (struct node *)malloc(sizeof(struct node));
-        verboseflag == 1 ? circular_display_node(temp, "STEP 3:Initialize Temp memory") : "";
-
-        temp->payload = payload;
-        verboseflag == 1 ? circular_display_node(temp, "\nSTEP 4: TEMP: Set the payload value in temp") : "";
-
-        temp->pointer = p;
-        verboseflag == 1 ? circular_display_node(temp, "\nSTEP 5: TEMP: Set the temp pointer to p ie first element") : "";
-
-        start = temp;
-        verboseflag == 1 ? circular_display_node(start, "\nSTEP 6: START: Set the start pointer to new temp node") : "";
-
-        verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
-        press_enter_to_continue();
-
-        return start;
     }
 
-    while (p->pointer != NULL)
-    {
-        if (p->pointer->payload == element)
-        {
-            break;
-        }
-        else
-        {
-            if (p->pointer->pointer == NULL && p->pointer->payload != element)
-            {
-                printf("No such element in the list");
-                return start;
-            }
-
-            p = p->pointer;
-        }
-    };
-    verboseflag == 1 ? circular_display_node(p, "\nSTEP 3: Enumerate to the node - 1 position contaning the value and store node location with p") : "";
-
-    temp = (struct node *)malloc(sizeof(struct node));
-    verboseflag == 1 ? circular_display_node(temp, "STEP 4:Initialize Temp node with memory") : "";
-
-    temp->payload = payload;
-    verboseflag == 1 ? circular_display_node(temp, "\nSTEP 5: TEMP: Set the payload value in temp") : "";
-
     temp->pointer = p->pointer;
-    verboseflag == 1 ? circular_display_node(temp, "\nSTEP 6: TEMP: Set the temp pointer to p pointer ie to the next node to which p was pointing") : "";
-
     p->pointer = temp;
-    verboseflag == 1 ? circular_display_node(p, "\nSTEP 7: P: Set the p pointer to the temp location") : "";
 
-    verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
-    press_enter_to_continue();
-
-    return start;
+    return end;
 }

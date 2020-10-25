@@ -5,8 +5,9 @@
 
 typedef struct node
 {
+    struct node *previouspointer;
     int payload;
-    struct node *pointer;
+    struct node *nextpointer;
 } node;
 
 #endif

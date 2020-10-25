@@ -16,6 +16,7 @@ void circularmain()
 {
     int circular_option, exitsub = 0;
     int user_input, list_length = 0, index, payload, element;
+    node *end = NULL;
     node *start = NULL;
     node *check;
 
@@ -37,16 +38,16 @@ void circularmain()
             // node *start = NULL;
             printf("Enter the number of elements you want inside the list\n");
             scanf("%d", &list_length);
-            start = circular_create_linked_list(start, list_length);
+            end = circular_create_linked_list(end, list_length);
             circular_clear_menu("Single linked list created", 1);
             break;
         case 2:
-            if (start != NULL)
+            if (end != NULL)
             {
                 circular_clear_menu("Enter in the beginning of the list", 1);
                 printf("\nPlease enter the payload\n");
                 scanf("%d", &payload);
-                start = circularInsertInBeginning(start, payload);
+                end = circularInsertInBeginning(end, payload);
                 circular_clear_menu("Element added as the first element", 1);
                 break;
             }
@@ -56,15 +57,15 @@ void circularmain()
                 break;
             }
         case 3:
-            if (start != NULL)
+            if (end != NULL)
             {
 
                 circular_clear_menu("Append an element at the end!", 1);
-                circular_display_linked_list(start, "Present linked list");
+                circular_display_linked_list(end, "Present linked list");
                 printf("\nPlease enter the payload\n");
                 scanf("%d", &payload);
-                start = circularInsertAtEnd(start, payload);
-                circular_display_linked_list(start, "Present linked list");
+                end = circularInsertAtEnd(end, payload);
+                circular_display_linked_list(end, "Present linked list");
                 circular_clear_menu("Element appended", 1);
                 break;
             }
@@ -75,7 +76,7 @@ void circularmain()
             }
 
         case 4:
-            if (start != NULL)
+            if (end != NULL)
             {
                 circular_clear_menu("Enter an element at an index position!", 1);
                 printf("\nPlease enter the index\n");
@@ -83,17 +84,17 @@ void circularmain()
 
                 printf("\nPlease enter the payload\n");
                 scanf("%d", &payload);
-                start = circularInsertAtPosition(start, index, payload);
-                circular_clear_menu("Element added at position", 1);
+                end = circularInsertAtPosition(end, index, payload);
+                // circular_clear_menu("Element added at position", 1);
                 break;
             }
             else
             {
-                circular_clear_menu("Create a list first", 1);
+                // circular_clear_menu("Create a list first", 1);
                 break;
             }
         case 5:
-            if (start != NULL)
+            if (end != NULL)
             {
                 circular_clear_menu("Enter an element after an element!", 1);
                 printf("\nPlease enter the payload\n");
@@ -101,8 +102,8 @@ void circularmain()
                 printf("\nPlease enter the element\n");
                 scanf("%d", &element);
 
-                start = circularInsertAfter(start, element, payload);
-                circular_clear_menu("Element added at position", 1);
+                end = circularInsertAfter(end, element, payload);
+                // circular_clear_menu("Element added at position", 1);
                 break;
             }
             else
@@ -111,7 +112,7 @@ void circularmain()
                 break;
             }
         case 6:
-            if (start != NULL)
+            if (end != NULL)
             {
                 circular_clear_menu("Enter an element before an element!", 1);
                 printf("\nPlease enter the element\n");
@@ -119,8 +120,8 @@ void circularmain()
 
                 printf("\nPlease enter the payload\n");
                 scanf("%d", &payload);
-                start = circularInsertBefore(start, element, payload);
-                circular_clear_menu("Element added at position", 1);
+                end = circularInsertBefore(end, element, payload);
+                // circular_clear_menu("Element added at position", 1);
                 break;
             }
             else
@@ -129,15 +130,15 @@ void circularmain()
                 break;
             }
         case 7:
-            if (start != NULL)
+            if (end != NULL)
             {
                 circular_clear_menu("Update an element!", 1);
                 printf("\nEnter the element to be updated\n");
                 scanf("%d", &element);
                 printf("\nEnter the new payload\n");
                 scanf("%d", &payload);
-                start = circularUpdateElement(start, element, payload);
-                circular_clear_menu("Element updated", 1);
+                end = circularUpdateElement(end, element, payload);
+                // circular_clear_menu("Element updated", 1);
                 break;
             }
             else
@@ -146,14 +147,14 @@ void circularmain()
                 break;
             }
         case 8:
-            if (start != NULL)
+            if (end != NULL)
             {
                 circular_clear_menu("Update an element at an index", 1);
                 printf("\nEnter the index of the element to be updated\n");
                 scanf("%d", &index);
                 printf("\nEnter the new payload\n");
                 scanf("%d", &payload);
-                start = circularUpdateAtIndex(start, index, payload);
+                end = circularUpdateAtIndex(end, index, payload);
                 circular_clear_menu("Element updated", 1);
                 break;
             }
@@ -163,13 +164,13 @@ void circularmain()
                 break;
             }
         case 9:
-            if (start != NULL)
+            if (end != NULL)
             {
                 circular_clear_menu("Delete an element", 1);
                 printf("\nEnter the element to be deleted\n");
                 scanf("%d", &element);
-                start = circularDeleteElement(start, element);
-                circular_clear_menu("Element Deleted", 1);
+                end = circularDeleteElement(end, element);
+                // circular_clear_menu("Element Deleted", 1);
                 break;
             }
             else
@@ -178,13 +179,13 @@ void circularmain()
                 break;
             }
         case 10:
-            if (start != NULL)
+            if (end != NULL)
             {
                 circular_clear_menu("Delete an element at an index position!", 1);
                 printf("\nEnter the index of the element to be deleted\n");
                 scanf("%d", &index);
-                start = circularDeleteAtIndex(start, index);
-                circular_clear_menu("Element deleted", 1);
+                end = circularDeleteAtIndex(end, index);
+                // circular_clear_menu("Element deleted", 1);
                 break;
             }
             else
@@ -193,10 +194,10 @@ void circularmain()
                 break;
             }
         case 11:
-            if (start != NULL)
+            if (end != NULL)
             {
                 circular_clear_menu("Displaying the list! Select another option!", 1);
-                circular_display_linked_list(start, "Present Linked list");
+                circular_display_linked_list(end, "Present Linked list");
                 break;
             }
             else

@@ -4,14 +4,14 @@
 #include "./../traversal/traversal.h"
 #include "./../banner_menu/bm.h"
 
-struct node *circularUpdateAtIndex(struct node *start, int index, int payload)
+struct node *circularUpdateAtIndex(struct node *end, int index, int payload)
 {
-    verboseflag == 1 ? circular_display_linked_list(start, "Present linked list") : "";
+    verboseflag == 1 ? circular_display_linked_list(end, "Present linked list") : "";
 
     struct node *p;
     int position = 0;
 
-    p = start;
+    p = end->pointer;
     verboseflag == 1 ? circular_display_node(p, "STEP 2: Initialize p node as a copy of the start node") : "";
 
     verboseflag == 1 ? circular_display_node(p, "STEP 3: Check if the index to be updated is the start node") : "";
@@ -27,7 +27,7 @@ struct node *circularUpdateAtIndex(struct node *start, int index, int payload)
             if (p->pointer == NULL)
             {
                 printf("No such index in the list");
-                return start;
+                return end;
             }
             p = p->pointer;
         }
@@ -37,20 +37,20 @@ struct node *circularUpdateAtIndex(struct node *start, int index, int payload)
         verboseflag == 1 ? circular_display_node(p, "STEP 5: Update p with the new payload value") : "";
     }
 
-    verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
+    verboseflag == 1 ? circular_display_linked_list(end, "Final linked list") : "";
     press_enter_to_continue();
 
-    return start;
+    return end;
 }
 
-struct node *circularUpdateElement(struct node *start, int element, int payload)
+struct node *circularUpdateElement(struct node *end, int element, int payload)
 {
-    verboseflag == 1 ? circular_display_linked_list(start, "Present linked list") : "";
+    verboseflag == 1 ? circular_display_linked_list(end, "Present linked list") : "";
 
     struct node *p;
     int position;
 
-    p = start;
+    p = end->pointer;
     verboseflag == 1 ? circular_display_node(p, "STEP 2: Initialize p node as a copy of the start node") : "";
 
     while (p->pointer != NULL)
@@ -64,7 +64,7 @@ struct node *circularUpdateElement(struct node *start, int element, int payload)
             if (p->pointer->pointer == NULL && p->pointer->payload != element)
             {
                 printf("No such element in the list");
-                return start;
+                return end;
             }
             p = p->pointer;
         }
@@ -74,8 +74,8 @@ struct node *circularUpdateElement(struct node *start, int element, int payload)
     p->payload = payload;
     verboseflag == 1 ? circular_display_node(p, "STEP 4: Update p with the new payload value") : "";
 
-    verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
+    verboseflag == 1 ? circular_display_linked_list(end, "Final linked list") : "";
     press_enter_to_continue();
 
-    return start;
+    return end;
 }

@@ -24,12 +24,12 @@ struct node *doublyUpdateAtIndex(struct node *start, int index, int payload)
     {
         for (position; position < (index); position++)
         {
-            if (p->pointer == NULL)
+            if (p->nextpointer == NULL)
             {
                 printf("No such index in the list");
                 return start;
             }
-            p = p->pointer;
+            p = p->nextpointer;
         }
         verboseflag == 1 ? doubly_display_node(p, "STEP 4: Enumerate p to the element whose value is to be updated") : "";
 
@@ -53,7 +53,7 @@ struct node *doublyUpdateElement(struct node *start, int element, int payload)
     p = start;
     verboseflag == 1 ? doubly_display_node(p, "STEP 2: Initialize p node as a copy of the start node") : "";
 
-    while (p->pointer != NULL)
+    while (p->nextpointer != NULL)
     {
         if (p->payload == element)
         {
@@ -61,12 +61,12 @@ struct node *doublyUpdateElement(struct node *start, int element, int payload)
         }
         else
         {
-            if (p->pointer->pointer == NULL && p->pointer->payload != element)
+            if (p->nextpointer->nextpointer == NULL && p->nextpointer->payload != element)
             {
                 printf("No such element in the list");
                 return start;
             }
-            p = p->pointer;
+            p = p->nextpointer;
         }
     }
     verboseflag == 1 ? doubly_display_node(p, "STEP 3: Enumerate p to the element whose value is to be updated") : "";

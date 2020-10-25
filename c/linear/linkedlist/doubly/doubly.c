@@ -32,13 +32,13 @@ void doublymain()
         switch (doubly_option)
         {
         case 1:
-            doubly_clear_menu("doubly Linked List", 1);
+            doubly_clear_menu("Doubly Linked List", 1);
             // free(start);
             // node *start = NULL;
             printf("Enter the number of elements you want inside the list\n");
             scanf("%d", &list_length);
             start = doubly_create_linked_list(start, list_length);
-            doubly_clear_menu("Single linked list created", 1);
+            doubly_clear_menu("Doubly linked list created", 1);
             break;
         case 2:
             if (start != NULL)
