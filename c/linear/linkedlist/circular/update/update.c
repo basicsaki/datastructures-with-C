@@ -12,13 +12,13 @@ struct node *circularUpdateAtIndex(struct node *end, int index, int payload)
     int position = 0;
 
     p = end->pointer;
-    verboseflag == 1 ? circular_display_node(p, "STEP 2: Initialize p node as a copy of the start node") : "";
+    verboseflag == 1 ? circular_display_node(p, "STEP (p): Initialize p node as a copy of the start node i.e end->pointer") : "";
 
-    verboseflag == 1 ? circular_display_node(p, "STEP 3: Check if the index to be updated is the start node") : "";
+    verboseflag == 1 ? circular_display_node(p, "STEP (p): Check if the index to be updated is the start node") : "";
     if (index == 0)
     {
         p->payload = payload;
-        verboseflag == 1 ? circular_display_node(p, "STEP 4: Update p with the new payload value") : "";
+        verboseflag == 1 ? circular_display_node(p, "STEP (P): Update p with the new payload value") : "";
     }
     else
     {
@@ -26,15 +26,15 @@ struct node *circularUpdateAtIndex(struct node *end, int index, int payload)
         {
             if (p->pointer == NULL)
             {
-                printf("No such index in the list");
+                verboseflag == 1 ? circular_display_node(p, "STEP (p): Displaying the last element. No such element") : "";
                 return end;
             }
             p = p->pointer;
         }
-        verboseflag == 1 ? circular_display_node(p, "STEP 4: Enumerate p to the element whose value is to be updated") : "";
+        verboseflag == 1 ? circular_display_node(p, "STEP (p): Enumerate p to the element whose value is to be updated") : "";
 
         p->payload = payload;
-        verboseflag == 1 ? circular_display_node(p, "STEP 5: Update p with the new payload value") : "";
+        verboseflag == 1 ? circular_display_node(p, "STEP (p): Update p with the new payload value") : "";
     }
 
     verboseflag == 1 ? circular_display_linked_list(end, "Final linked list") : "";
@@ -51,7 +51,7 @@ struct node *circularUpdateElement(struct node *end, int element, int payload)
     int position;
 
     p = end->pointer;
-    verboseflag == 1 ? circular_display_node(p, "STEP 2: Initialize p node as a copy of the start node") : "";
+    verboseflag == 1 ? circular_display_node(p, "STEP (p): Initialize p node as a copy of the start node i.e end->pointer") : "";
 
     while (p->pointer != NULL)
     {
@@ -63,19 +63,18 @@ struct node *circularUpdateElement(struct node *end, int element, int payload)
         {
             if (p->pointer->pointer == NULL && p->pointer->payload != element)
             {
-                printf("No such element in the list");
+                verboseflag == 1 ? circular_display_node(p, "STEP (p): Displaying the last element. No such element") : "";
                 return end;
             }
             p = p->pointer;
         }
     }
-    verboseflag == 1 ? circular_display_node(p, "STEP 3: Enumerate p to the element whose value is to be updated") : "";
+    verboseflag == 1 ? circular_display_node(p, "STEP (p): Enumerate p to the index of the node whose payload is to be updated") : "";
 
     p->payload = payload;
-    verboseflag == 1 ? circular_display_node(p, "STEP 4: Update p with the new payload value") : "";
+    verboseflag == 1 ? circular_display_node(p, "STEP (p): Update p with the new payload value") : "";
 
     verboseflag == 1 ? circular_display_linked_list(end, "Final linked list") : "";
     press_enter_to_continue();
-
     return end;
 }

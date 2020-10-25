@@ -9,23 +9,23 @@ struct node *doublyDeleteAtIndex(struct node *start, int index)
     node *p, *temp;
 
     p = start;
-    verboseflag == 1 ? doubly_display_node(p, "STEP 2: Initialize p node as a copy of the start node") : "";
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Initialize p node as a copy of the start node") : "";
 
-    verboseflag == 1 ? doubly_display_node(p, "STEP 3: Check if index is 0") : "";
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Check if index is 0") : "";
     if (index == 0)
     {
         p = start->nextpointer;
-        verboseflag == 1 ? doubly_display_node(p, "STEP 4: Replace p as the node to which start was pointing") : "";
+        verboseflag == 1 ? doubly_display_node(p, "STEP (p): Replace p as the node to which start was pointing") : "";
 
         free(start);
         verboseflag == 1 ? doubly_display_node(p, "STEP 5: Free node at position 0 i.e start element") : "";
 
         start = p;
-        verboseflag == 1 ? doubly_display_node(p, "STEP 6: Replace new start node as node at nextpointer p") : "";
+        verboseflag == 1 ? doubly_display_node(p, "STEP 6: Replace new start node as node at p") : "";
 
         verboseflag == 1 ? doubly_display_linked_list(start, "Final linked list") : "";
-        press_enter_to_continue();
 
+        press_enter_to_continue();
         return start;
     }
 
@@ -33,22 +33,27 @@ struct node *doublyDeleteAtIndex(struct node *start, int index)
     {
         if (p->nextpointer == NULL)
         {
-            printf("No such index in the list");
+            verboseflag == 1 ? doubly_display_node(p, "STEP (p): Displaying the last element. No such element") : "";
             return start;
         }
 
         p = p->nextpointer;
     }
-    verboseflag == 1 ? doubly_display_node(p, "STEP 4: Enumerate to the node at index-1 position(We need the node which points at 'to be deleted node')") : "";
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Enumerate to the node at index position(We need the node which points at 'to be deleted node')") : "";
 
+    verboseflag == 1 ? doubly_display_node(p->nextpointer, "STEP (p): Check if the node is the last node") : "";
     if (p->nextpointer != NULL)
     {
         p->previouspointer->nextpointer = p->nextpointer;
+        verboseflag == 1 ? doubly_display_node(p->previouspointer, "STEP (p): Set the next pointer of the P previous pointer to P next pointer") : "";
+
         p->nextpointer->previouspointer = p->previouspointer;
+        verboseflag == 1 ? doubly_display_node(p->nextpointer, "STEP (p): Set the previous pointer of the P next pointer to P previous pointer") : "";
     }
     else
     {
         p->previouspointer->nextpointer = NULL;
+        verboseflag == 1 ? doubly_display_node(p->nextpointer, "STEP (p): If yes, Set the previous pointer of the P next pointer to NULL") : "";
     }
 
     free(p);
@@ -66,24 +71,25 @@ struct node *doublyDeleteAtIndex(struct node *start, int index)
 struct node *doublyDeleteElement(struct node *start, int element)
 {
     verboseflag == 1 ? doubly_display_linked_list(start, "Present linked list") : "";
-
     node *p, *temp;
     // int position = 0;
     p = start;
-    verboseflag == 1 ? doubly_display_node(p, "STEP 2: Initialize p node as a copy of the start node") : "";
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Initialize p node as a copy of the start node") : "";
 
-    verboseflag == 1 ? doubly_display_node(p, "STEP 3: Check if the node at position 0 has the to be deleted payload") : "";
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Check if the node at position 0 has the 'to be deleted' payload") : "";
     if (element == p->payload)
     {
         p = p->nextpointer;
-        verboseflag == 1 ? doubly_display_node(p, "STEP 4: Replace node p as the node to which p was pointing ie node at index posiion 1") : "";
+        verboseflag == 1 ? doubly_display_node(p, "STEP (p): If yes, replace node p as the node to which p was pointing ie node at index posiion 1") : "";
 
         free(start);
-        verboseflag == 1 ? doubly_display_node(p, "STEP 5: Free memory from the node at position 0") : "";
+        verboseflag == 1 ? doubly_display_node(start, "STEP (start): Free memory from the node at position 0") : "";
 
         start = p;
+        verboseflag == 1 ? doubly_display_node(p, "STEP (p): Replace p as the start node") : "";
+
         p->previouspointer = NULL;
-        verboseflag == 1 ? doubly_display_node(p, "STEP 6: Replace p as the start node") : "";
+        verboseflag == 1 ? doubly_display_node(p, "STEP (p): Replace p previous pointer as NULL") : "";
 
         verboseflag == 1 ? doubly_display_linked_list(start, "Final linked list") : "";
         press_enter_to_continue();
@@ -91,7 +97,7 @@ struct node *doublyDeleteElement(struct node *start, int element)
         return start;
     }
 
-    verboseflag == 1 ? doubly_display_node(p, "STEP 4: Enumerate till the element is found in the list - 1 node") : "";
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Enumerate till the element is found in the list - 1 node") : "";
     while (p->payload != element)
     {
         if (p->nextpointer == NULL && p->payload != element)
@@ -104,21 +110,28 @@ struct node *doublyDeleteElement(struct node *start, int element)
     }
 
     // printf("%d this is the element", p->payload);
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): This is the element") : "";
+
     temp = p->nextpointer;
-    verboseflag == 1 ? doubly_display_node(temp, "STEP 5: Initialize a temp node as the node next to the 'to be deleted node' ") : "";
+    verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Initialize temp node as the node 'to be deleted' ") : "";
 
     p->previouspointer->nextpointer = p->nextpointer;
+    verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Set the next pointer of the node previos to p as the p next pointer") : "";
+
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Check if p is the last node") : "";
     if (p->nextpointer != NULL)
     {
         p->nextpointer->previouspointer = p->previouspointer;
+        verboseflag == 1 ? doubly_display_node(p, "STEP (p): If no, set the previous pointer of the next pointer to p previous node") : "";
     }
     else
     {
+        verboseflag == 1 ? doubly_display_node(p, "STEP (p): If yes set the next pointer of the previous pointer as NULL") : "";
         p->previouspointer->nextpointer = NULL;
     }
 
     free(p);
-    verboseflag == 1 ? doubly_display_node(p, "STEP 4: Free memory from the 'to be deleted node'") : "";
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Free memory from the 'to be deleted node'") : "";
 
     verboseflag == 1 ? doubly_display_linked_list(start, "Final linked list") : "";
     press_enter_to_continue();

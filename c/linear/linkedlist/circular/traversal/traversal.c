@@ -7,7 +7,7 @@ void circular_display_linked_list(struct node *end, char *message)
 
     if (end == NULL)
     {
-        printf("List is empty\n");
+        printf("List is empty\n\n");
         return;
     }
     p = end->pointer;
@@ -22,7 +22,6 @@ void circular_display_linked_list(struct node *end, char *message)
         {
             verboseflag == 0 ? printf("%d  --->  ", p->payload) : printf("%d(MemLocation: %p)-Pointer(: %p)  --->  \n", p->payload, &p->payload, p->pointer);
         }
-
         p = p->pointer;
     } while (p != end->pointer);
 }
@@ -32,8 +31,8 @@ void circular_display_node(struct node *start, char *message)
     printf("\n%s\n", message);
     if (start == NULL)
     {
-        printf("Node is empty\n");
+        printf("Node is empty\n\n");
         return;
     }
-    verboseflag == 0 ? printf("%d\t\n", start->payload) : printf("%d(MemLocation: %p)-Pointer(: %p)\t\n", start->payload, &start->payload, start->pointer);
+    verboseflag == 0 ? printf("%d\t\n", start->payload) : printf("%d(MemLocation: %p)-Pointer(: %p)\t\n\n", start->payload, &start->payload, start->pointer);
 }

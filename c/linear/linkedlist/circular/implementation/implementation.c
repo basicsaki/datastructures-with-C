@@ -5,60 +5,61 @@
 
 struct node *circular_create_linked_list(struct node *end, int length)
 {
-
     struct node *temp, *p, *start;
     int user_input, pi;
 
     p = end;
-    // verboseflag == 1 ? circular_display_linked_list(end, "STEP 1 : Initialize p node as a copy of the start node") : "";
+    verboseflag == 1 ? circular_display_node(p, "STEP (P) : Initialize p node as a copy of the start node") : "";
+
+    //first element
+    verboseflag == 1 ? circular_display_linked_list(p, "Present linked list") : "";
 
     printf("Enter element to be inserted in the list\n");
     scanf("%d", &user_input);
     temp = (struct node *)malloc(sizeof(struct node));
     start = (struct node *)malloc(sizeof(struct node));
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Initialize memory for a temp node (payload + nextpointer) memory") : "";
 
     temp->payload = user_input;
-    start = temp;
-    start->pointer = start;
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Set the payload value in temp") : "";
 
-    end = start;
+    end = temp;
+    verboseflag == 1 ? circular_display_node(end, "STEP (end): Set the end node as the temp node") : "";
+
+    end->pointer = end;
+    verboseflag == 1 ? circular_display_node(end, "STEP (end): Set the end node pointer to itself as it is the only node(for a circular implmentation)") : "";
+
+    verboseflag == 1 ? circular_display_linked_list(end, "Final linked list") : "";
+    press_enter_to_continue();
+
+    start = end;
+
     for (int i = 0; i < length - 1; i++)
     {
+        circular_clear_menu("Added to the list, enter next element", 0);
         verboseflag == 1 ? circular_display_linked_list(end, "Present linked list") : "";
         printf("Enter element to be inserted in the list\n");
         scanf("%d", &user_input);
 
         // temp = (struct node *)malloc(sizeof(struct node));
-        verboseflag == 1 ? circular_display_linked_list(temp, "STEP : Initialize memory for a temp node (payload + pointer) memory") : "";
         temp = (struct node *)malloc(sizeof(struct node));
+        verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Initialize memory for a temp node (payload + pointer) memory") : "";
 
         temp->payload = user_input;
-        verboseflag == 1 ? circular_display_node(temp, "STEP temp: Set the payload value in temp") : "";
+        verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Set the payload value in temp") : "";
 
         end->pointer = temp;
-        verboseflag == 1 ? circular_display_node(end, "STEP End: Set temp pointer to p node") : "";
+        verboseflag == 1 ? circular_display_node(end, "STEP (end): Set end pointer to temp node") : "";
 
         temp->pointer = start;
-        verboseflag == 1 ? circular_display_node(end, "STEP TEMP: Set temp pointer to p node") : "";
+        verboseflag == 1 ? circular_display_node(end, "STEP (end): Set temp pointer to start node(added in last)") : "";
 
         end = temp;
+        verboseflag == 1 ? circular_display_node(end, "STEP (end): Copy temp node as end node") : "";
 
-        verboseflag == 1 ? circular_display_node(end, "STEP : Copy temp node to node p") : "";
-
-        // circular_clear_menu("Added to the list, enter next element", 0);
+        verboseflag == 1 ? circular_display_linked_list(end, "Final linked list") : "";
+        press_enter_to_continue();
     }
-
-    // while (p->pointer != NULL)
-    // {
-    //     p = p->pointer;
-    // }
-    // temp->pointer = p;
-
-    // verboseflag == 1 ? circular_display_linked_list(p, "STEP : Replacing start node with new start(temp node)") : "";
-    // end = temp;
-
-    verboseflag == 1 ? circular_display_linked_list(end, "Final linked list") : "";
-    press_enter_to_continue();
 
     return end;
 }
@@ -68,30 +69,19 @@ struct node *circularInsertInBeginning(struct node *end, int payload)
     node *temp, *p;
 
     temp = (struct node *)malloc(sizeof(struct node));
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Initialize memory for a temp node (payload + pointer) memory") : "";
 
     temp->payload = payload;
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Set the payload value in temp") : "";
+
     temp->pointer = end->pointer;
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Set temp pointer as end pointer i.e pointer to the index 1 node from new first node") : "";
 
     end->pointer = temp;
+    verboseflag == 1 ? circular_display_node(end, "STEP (end): Set end pointer as temp node i.e pointer to the first node") : "";
 
-    // verboseflag == 1
-    //     ? circular_display_linked_list(start, "Present linked list")
-    //     : "";
-
-    // verboseflag == 1 ? circular_display_node(temp, "STEP 1:Initialize Temp user element") : "";
-
-    // temp->payload = payload;
-    // verboseflag == 1 ? circular_display_node(temp, "\nSTEP 2: Set the payload value in temp") : "";
-
-    // temp->pointer = start;
-    // verboseflag == 1 ? circular_display_node(temp, "\nSTEP 3:Set the temp pointer to previous start node") : "";
-
-    // start = temp;
-    // verboseflag == 1 ? circular_display_node(start, "\nSTEP 4: Replacing start with new start(temp node)") : "";
-
-    // verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
-    // press_enter_to_continue();
-
+    verboseflag == 1 ? circular_display_linked_list(end, "Final linked list") : "";
+    press_enter_to_continue();
     return end;
 }
 
@@ -99,59 +89,50 @@ struct node *circularInsertAtEnd(node *end, int payload)
 {
 
     node *temp;
-    verboseflag == 1 ? circular_display_node(end, "STEP TEMP: Set temp pointer to p node") : "";
 
     temp = (struct node *)malloc(sizeof(struct node));
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Initialize memory for a temp node (payload + pointer) memory") : "";
+
     temp->payload = payload;
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Set the payload value in temp") : "";
+
     temp->pointer = end->pointer;
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Set temp pointer as end pointer i.e pointer to the first node from the new last node") : "";
+
     end->pointer = temp;
+    verboseflag == 1 ? circular_display_node(end, "STEP (end): Set end pointer as temp node i.e pointer to the last node from the previous last node") : "";
 
     end = temp;
+    verboseflag == 1 ? circular_display_node(end, "STEP (end): Set temp as the new last node") : "";
 
-    // verboseflag == 1 ? circular_display_linked_list(start, "Present linked list") : "";
-
-    // verboseflag == 1 ? circular_display_node(temp, "STEP 1:Initialize Temp user element") : "";
-
-    // temp->payload = payload;
-    // verboseflag == 1 ? circular_display_node(temp, "\nSTEP 2: Set the payload value in temp node") : "";
-
-    // temp->pointer = NULL;
-    // verboseflag == 1 ? circular_display_node(temp, "\nSTEP 3:Set the temp pointer to null") : "";
-
-    // p = start;
-    // verboseflag == 1 ? circular_display_node(p, "\nSTEP 4: Initialize p node as a copy of the start node for list traversal") : "";
-
-    // while (p->pointer != NULL)
-    // {
-    //     p = p->pointer;
-    // }
-    // verboseflag == 1 ? circular_display_node(p, "\nSTEP 5:Enumerate to the last node") : "";
-
-    // p->pointer = temp;
-    // verboseflag == 1 ? circular_display_node(p, "\nSTEP 6:Replace the present last node pointer to our temp node memory address") : "";
-
-    // verboseflag == 1 ? circular_display_linked_list(start, "Final linked list") : "";
-    // press_enter_to_continue();
+    verboseflag == 1 ? circular_display_linked_list(end, "Final linked list") : "";
+    press_enter_to_continue();
 
     return end;
 }
 
 struct node *circularInsertAtPosition(node *end, int index, int payload)
 {
-    verboseflag == 1 ? circular_display_node(end, "STEP TEMP: Set temp pointer to p node") : "";
-
     node *p, *temp;
     int i = 0;
-    temp = (struct node *)malloc(sizeof(struct node));
+
     p = end->pointer;
-    verboseflag == 1 ? circular_display_node(p, "STEP TEMP: Set temp pointer to p node") : "";
+    verboseflag == 1 ? circular_display_node(p, "STEP (p): Initialize p as a start node i.e end->pointer") : "";
+
+    temp = (struct node *)malloc(sizeof(struct node));
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Initialize memory for a temp node (payload + pointer) memory") : "";
 
     temp->payload = payload;
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Set the payload value in temp") : "";
 
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Check if the index value is the first element") : "";
     if (index == 0)
     {
         temp->pointer = end->pointer;
+        verboseflag == 1 ? circular_display_node(temp, "STEP (temp): If yes,set the temp pointer to the previous first pointer") : "";
+
         end->pointer = temp;
+        verboseflag == 1 ? circular_display_node(end, "STEP (end): Set the pointer from the last node to the first node  i.e circular pointer from the last node to the new first node") : "";
         return end;
     }
     else
@@ -161,15 +142,23 @@ struct node *circularInsertAtPosition(node *end, int index, int payload)
             printf("%d", i);
             if (p->pointer == end->pointer)
             {
-                printf("No such index in the list");
+                verboseflag == 1 ? circular_display_node(p, "STEP (p): Displaying the last element. No such element") : "";
+                press_enter_to_continue();
                 return end;
             }
             p = p->pointer;
         }
+        verboseflag == 1 ? circular_display_node(p, "STEP (p): Enumerate to the node at index-1 position(We need the node after which we need to add our node") : "";
+
         temp->pointer = p->pointer;
+        verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Set temp pointer to p pointer i.e pointer to the earlier node from p") : "";
+
         p->pointer = temp;
+        verboseflag == 1 ? circular_display_node(p, "STEP (p): Point to the temp node from the found p node") : "";
     }
-    verboseflag == 1 ? circular_display_node(p, "STEP TEMP: Set temp pointer to p node") : "";
+
+    verboseflag == 1 ? circular_display_linked_list(end, "Final linked list") : "";
+    press_enter_to_continue();
 
     return end;
 }
@@ -178,21 +167,33 @@ struct node *circularInsertAfter(node *end, int element, int payload)
 {
     node *temp, *start, *p;
     start = (struct node *)malloc(sizeof(struct node));
+
     temp = (struct node *)malloc(sizeof(struct node));
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Initialize memory for a temp node (payload + pointer) memory") : "";
+
     start = end->pointer;
+    verboseflag == 1 ? circular_display_node(start, "STEP (start): Initialized start as the first node i.e pointer from the last node") : "";
+
     p = start;
+    verboseflag == 1 ? circular_display_node(start, "STEP (p): Initialize p from the start node") : "";
+
     temp->payload = payload;
-    printf("d %d", p->payload);
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Set the payload value in temp") : "";
 
     while (p->payload != element)
     {
-        printf("p %d", p->payload);
-        // printf("p");
         p = p->pointer;
     }
+    verboseflag == 1 ? circular_display_node(p, "\nSTEP (p): Enumerate to the node position contaning the value and store node location with p") : "";
 
     temp->pointer = p->pointer;
+    verboseflag == 1 ? circular_display_node(temp, "\nSTEP (temp): Set the temp pointer as the p pointer i.e to the node which p was pointing") : "";
+
     p->pointer = temp;
+    verboseflag == 1 ? circular_display_node(p, "\nSTEP (p): Set the p pointer to temp i.e the new element") : "";
+
+    verboseflag == 1 ? circular_display_linked_list(end, "Final linked list") : "";
+    press_enter_to_continue();
 
     return end;
 }
@@ -202,30 +203,44 @@ struct node *circularInsertBefore(node *end, int element, int payload)
     node *temp, *start, *p;
     start = (struct node *)malloc(sizeof(struct node));
     temp = (struct node *)malloc(sizeof(struct node));
-    start = end->pointer;
-    p = start;
-    temp->payload = payload;
-    printf("d %d", p->payload);
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Initialize memory for a temp node (payload + pointer) memory") : "";
 
+    start = end->pointer;
+    verboseflag == 1 ? circular_display_node(start, "STEP (start): Initialized start as the first node i.e pointer from the last node") : "";
+
+    p = start;
+    verboseflag == 1 ? circular_display_node(start, "STEP (p): Initialize p from the start node") : "";
+
+    temp->payload = payload;
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): Set the payload value in temp") : "";
+
+    //first element
+    verboseflag == 1 ? circular_display_node(p, "STEP (p): Check if the payload is at the first node") : "";
     if (p->payload == payload)
     {
         temp->pointer = p;
+        verboseflag == 1 ? circular_display_node(temp, "STEP (temp): If yes, set the temp pointer to p node") : "";
+
         end->pointer = temp;
+        verboseflag == 1 ? circular_display_node(p, "STEP (p): set the end pointer to the new first node i.e temp") : "";
         // p->pointer = temp;
     }
     else
     {
-
         while (p->pointer->payload != element)
         {
-            printf("p %d", p->payload);
-            // printf("p");
             p = p->pointer;
         }
+        verboseflag == 1 ? circular_display_node(p, "\nSTEP (p): Enumerate to the node position contaning the value -1 index and store node location with p") : "";
     }
 
     temp->pointer = p->pointer;
-    p->pointer = temp;
+    verboseflag == 1 ? circular_display_node(temp, "\nSTEP (temp): Set the temp pointer as the p pointer i.e to the node which p was pointing") : "";
 
+    p->pointer = temp;
+    verboseflag == 1 ? circular_display_node(p, "\nSTEP (p): Set the p pointer to temp i.e the new element") : "";
+
+    verboseflag == 1 ? circular_display_linked_list(end, "Final linked list") : "";
+    press_enter_to_continue();
     return end;
 }
