@@ -18,7 +18,7 @@ struct node *deleteAtIndex(struct node *start, int index)
         verboseflag == 1 ? display_node(p, "STEP (p): Replace p as the node to which start was pointing") : "";
 
         free(start);
-        verboseflag == 1 ? display_node(p, "STEP (p): Free node at position 0 i.e start element") : "";
+        verboseflag == 1 ? display_node(start, "STEP (start): Free node at position 0 i.e start element") : "";
 
         start = p;
         verboseflag == 1 ? display_node(p, "STEP (p): Replace new start node as node at pointer p") : "";
@@ -49,7 +49,7 @@ struct node *deleteAtIndex(struct node *start, int index)
     verboseflag == 1 ? display_node(p, "STEP (p): Free the 'to be deleted node' from memory") : "";
 
     p->pointer = temp;
-    verboseflag == 1 ? display_node(p, "STEP (p): Point p node pointer to the temp pointer that we saved earlier") : "";
+    verboseflag == 1 ? display_node(p->pointer, "STEP (p->pointer): Point p node pointer to the temp pointer that we saved earlier") : "";
 
     verboseflag == 1 ? display_linked_list(start, "Final linked list") : "";
     press_enter_to_continue();
@@ -76,7 +76,7 @@ struct node *deleteElement(struct node *start, int element)
         verboseflag == 1 ? display_node(p, "STEP (p): Free memory from the node at position 0") : "";
 
         start = p;
-        verboseflag == 1 ? display_node(p, "STEP (p): Replace p as the start node") : "";
+        verboseflag == 1 ? display_node(start, "STEP (start): Replace p as the start node") : "";
 
         verboseflag == 1 ? display_linked_list(start, "Final linked list") : "";
         press_enter_to_continue();

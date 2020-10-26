@@ -19,13 +19,13 @@ struct node *doubly_create_linked_list(struct node *start, int length)
         scanf("%d", &user_input);
 
         temp = (struct node *)malloc(sizeof(struct node));
-        verboseflag == 1 ? doubly_display_linked_list(temp, "STEP (temp): Initialize memory for a temp node (previous pointer + payload + nextpointer) memory") : "";
+        verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Initialize memory for a temp node (previous pointer + payload + nextpointer) memory") : "";
 
         //first element
-        verboseflag == 1 ? doubly_display_linked_list(temp, "STEP (temp): Check if the element is the first element") : "";
+        verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Check if the element is the first element") : "";
         if (i == 0)
         {
-            verboseflag == 1 ? doubly_display_linked_list(start, "Element is the first element") : "";
+            verboseflag == 1 ? doubly_display_linked_list(start, "Present linked list. Element is the first element") : "";
 
             temp->payload = user_input;
             verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Set the payload value in temp") : "";
@@ -49,13 +49,13 @@ struct node *doubly_create_linked_list(struct node *start, int length)
             verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Set the payload value in temp") : "";
 
             p->nextpointer = temp;
-            verboseflag == 1 ? doubly_display_node(p, "STEP (P): Set p next pointer to temp node") : "";
+            verboseflag == 1 ? doubly_display_node(p->nextpointer, "STEP (P->nextpointer): Set p next pointer to temp node") : "";
 
             temp->previouspointer = p;
-            verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Set temp previous pointer to p node") : "";
+            verboseflag == 1 ? doubly_display_node(temp->previouspointer, "STEP (temp->previouspointer): Set temp previous pointer to p node") : "";
 
             temp->nextpointer = NULL;
-            verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Set temp nextpointer to null") : "";
+            verboseflag == 1 ? doubly_display_node(temp->nextpointer, "STEP (temp->nextpointer): Set temp nextpointer to null") : "";
 
             p = temp;
             verboseflag == 1 ? doubly_display_node(p, "STEP (p): Set p node as the temp node for the next iteration") : "";
@@ -85,7 +85,7 @@ struct node *doublyInsertInBeginning(struct node *start, int payload)
     verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Set the temp previous pointer to NULL") : "";
 
     temp->nextpointer = start;
-    verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Set the temp nextpointer to the start node") : "";
+    verboseflag == 1 ? doubly_display_node(temp->nextpointer, "STEP (temp->nextpointer): Set the temp nextpointer to the start node") : "";
 
     start = temp;
     verboseflag == 1 ? doubly_display_node(start, "STEP (start): Replacing start with new start(temp node)") : "";
@@ -120,10 +120,10 @@ struct node *doublyInsertAtEnd(node *start, int payload)
     verboseflag == 1 ? doubly_display_node(p, "STEP (p):Enumerate to the last node") : "";
 
     p->nextpointer = temp;
-    verboseflag == 1 ? doubly_display_node(p, "STEP (p):Replace the present last node nextpointer to our temp node memory address") : "";
+    verboseflag == 1 ? doubly_display_node(p->nextpointer, "STEP (p->nextpointer):Replace the present last node nextpointer to our temp node memory address") : "";
 
     temp->previouspointer = p;
-    verboseflag == 1 ? doubly_display_node(temp, "STEP (temp):Replace the temp previous pointer to node p") : "";
+    verboseflag == 1 ? doubly_display_node(temp->previouspointer, "STEP (temp->previouspointer):Replace the temp previous pointer to node p") : "";
 
     verboseflag == 1 ? doubly_display_linked_list(start, "Final linked list") : "";
     press_enter_to_continue();
@@ -158,25 +158,25 @@ struct node *doublyInsertAtPosition(node *start, int index, int payload)
         }
         p = p->nextpointer;
     }
-    verboseflag == 1 ? doubly_display_node(p, "\nSTEP (p): Enumerate to the node at index-1 position(We need the node after which we need to add our node") : "";
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Enumerate to the node at index-1 position(We need the node after which we need to add our node") : "";
 
     temp = (struct node *)malloc(sizeof(struct node));
     verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Initialize Temp memory") : "";
 
     temp->payload = payload;
-    verboseflag == 1 ? doubly_display_node(temp, "\nSTEP (temp): Set the payload value in temp") : "";
+    verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Set the payload value in temp") : "";
 
     temp->previouspointer = p;
-    verboseflag == 1 ? doubly_display_node(temp, "\nSTEP (temp): Set the temp previous pointer to node P") : "";
+    verboseflag == 1 ? doubly_display_node(temp->previouspointer, "STEP (temp->previouspointer): Set the temp previous pointer to node P") : "";
 
     temp->nextpointer = p->nextpointer;
-    verboseflag == 1 ? doubly_display_node(temp, "\nSTEP (temp): Set the temp nextpointer to p nextpointer ie to the previous node to which p was pointing") : "";
+    verboseflag == 1 ? doubly_display_node(temp->nextpointer, "STEP (temp->nextpointer): Set the temp nextpointer to p nextpointer ie to the previous node to which p was pointing") : "";
 
     p->nextpointer->previouspointer = temp;
-    verboseflag == 1 ? doubly_display_node(p, "\nSTEP (P): Set the previous pointer of the node next to p->nextpointer to temp node") : "";
+    verboseflag == 1 ? doubly_display_node(p->nextpointer, "STEP (p->nextpointer): Set the previous pointer of the node next to p->nextpointer to temp node") : "";
 
     p->nextpointer = temp;
-    verboseflag == 1 ? doubly_display_node(p, "\nSTEP (P): Set the p nextpointer to temp element") : "";
+    verboseflag == 1 ? doubly_display_node(p->nextpointer, "STEP (p->nextpointer): Set the p nextpointer to temp element") : "";
 
     verboseflag == 1 ? doubly_display_linked_list(start, "Final linked list") : "";
     press_enter_to_continue();
@@ -191,7 +191,7 @@ struct node *doublyInsertAfter(node *start, int element, int payload)
     int position = 0;
 
     p = start;
-    verboseflag == 1 ? doubly_display_node(p, "\nSTEP (p): Set start value in another node p for list traversal") : "";
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Set start value in another node p for list traversal") : "";
 
     while (p->nextpointer != NULL)
     {
@@ -204,33 +204,35 @@ struct node *doublyInsertAfter(node *start, int element, int payload)
             if (p->nextpointer->nextpointer == NULL && p->nextpointer->payload != element)
             {
                 verboseflag == 1 ? doubly_display_node(p, "STEP (p): Displaying the last element. No such element") : "";
+                press_enter_to_continue();
+
                 return start;
             }
             p = p->nextpointer;
         }
     };
-    verboseflag == 1 ? doubly_display_node(p, "\nSTEP (p): Enumerate to the node with payload as the input payload and replace node with p") : "";
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Enumerate to the node with payload as the input payload and replace node with p") : "";
 
     temp = (struct node *)malloc(sizeof(struct node));
     verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Initialize Temp memory") : "";
 
     temp->payload = payload;
-    verboseflag == 1 ? doubly_display_node(temp, "\nSTEP (temp): Set the payload value in temp") : "";
+    verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Set the payload value in temp") : "";
 
     temp->nextpointer = p->nextpointer;
-    verboseflag == 1 ? doubly_display_node(temp, "\nSTEP (temp): Set the temp nextpointer to p nextpointer ie to the next node to which p was pointing") : "";
+    verboseflag == 1 ? doubly_display_node(temp->nextpointer, "STEP (temp->nextpointer): Set the temp nextpointer to p nextpointer ie to the next node to which p was pointing") : "";
 
     temp->previouspointer = p;
-    verboseflag == 1 ? doubly_display_node(temp, "\nSTEP (temp): Set the temp previous pointer to p") : "";
+    verboseflag == 1 ? doubly_display_node(temp->previouspointer, "STEP (temp->previouspointer): Set the temp previous pointer to p") : "";
 
     if (p->nextpointer != NULL)
     {
         p->nextpointer->previouspointer = temp;
-        verboseflag == 1 ? doubly_display_node(temp, "\nSTEP (temp): Set the temp nextpointer to p nextpointer ie to the next node to which p was pointing") : "";
+        verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Set the previous pointer of the p nextpointer to temp") : "";
     }
 
     p->nextpointer = temp;
-    verboseflag == 1 ? doubly_display_node(p, "\nSTEP (p): Set the p nextpointer to the temp node location") : "";
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Set the p nextpointer to the temp node location") : "";
 
     verboseflag == 1 ? doubly_display_linked_list(start, "Final linked list") : "";
     press_enter_to_continue();
@@ -245,7 +247,7 @@ struct node *doublyInsertBefore(node *start, int element, int payload)
     int position = 0;
 
     p = start;
-    verboseflag == 1 ? doubly_display_node(p, "\nSTEP (p): Initialize p node as a copy of the start node for list traversal") : "";
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Initialize p node as a copy of the start node for list traversal") : "";
 
     // verboseflag == 1 ? doubly_display_node(p, "STEP 2: Check if the element is the first element") : "";
     // if (p->payload == element)
@@ -266,40 +268,42 @@ struct node *doublyInsertBefore(node *start, int element, int payload)
             {
                 verboseflag == 1 ? doubly_display_node(p, "STEP (p): Displaying the last element. No such element") : "";
                 // printf("No such element in the list");
+                press_enter_to_continue();
+
                 return start;
             }
 
             p = p->nextpointer;
         }
     };
-    verboseflag == 1 ? doubly_display_node(p, "\nSTEP (p): Enumerate to the node position contaning the value and store node location with p") : "";
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Enumerate to the node position contaning the value and store node location with p") : "";
 
     temp = (struct node *)malloc(sizeof(struct node));
     verboseflag == 1 ? doubly_display_node(temp, "STEP (temp):Initialize Temp node with memory") : "";
 
     temp->payload = payload;
-    verboseflag == 1 ? doubly_display_node(temp, "\nSTEP (temp): Set the payload value in temp") : "";
+    verboseflag == 1 ? doubly_display_node(temp, "STEP (temp): Set the payload value in temp") : "";
 
     temp->nextpointer = p;
-    verboseflag == 1 ? doubly_display_node(temp, "\nSTEP (temp): Set the temp nextpointer to p ") : "";
+    verboseflag == 1 ? doubly_display_node(temp->nextpointer, "STEP (temp->nextpointer): Set the temp nextpointer to p ") : "";
 
-    verboseflag == 1 ? doubly_display_node(p, "\nSTEP (p): Check if the p previous pointer is NULL ") : "";
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Check if the p previous pointer is NULL ") : "";
     if (p->previouspointer != NULL)
     {
         p->previouspointer->nextpointer = temp;
-        verboseflag == 1 ? doubly_display_node(p, "\nSTEP (p): Set nextpointer of p previous pointer to temp") : "";
+        verboseflag == 1 ? doubly_display_node(p, "STEP (p): Set nextpointer of p previous pointer to temp") : "";
     }
     else
     {
         start = temp;
-        verboseflag == 1 ? doubly_display_node(p, "\nSTEP (p): If yes set start as temp") : "";
+        verboseflag == 1 ? doubly_display_node(p, "STEP (p): If yes set start as temp") : "";
     }
 
     temp->previouspointer = p->previouspointer;
-    verboseflag == 1 ? doubly_display_node(temp, "\nSTEP (TEMP): Set the temp previous pointer to p previous pointer") : "";
+    verboseflag == 1 ? doubly_display_node(temp->previouspointer, "STEP (temp->previouspointer): Set the temp previous pointer to p previous pointer") : "";
 
     p->previouspointer = temp;
-    verboseflag == 1 ? doubly_display_node(temp, "\nSTEP (TEMP): Set the p previous pointer to temp") : "";
+    verboseflag == 1 ? doubly_display_node(p->previouspointer, "STEP (p->previouspointer): Set the p previous pointer to temp") : "";
 
     verboseflag == 1 ? doubly_display_linked_list(start, "Final linked list") : "";
     press_enter_to_continue();

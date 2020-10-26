@@ -7,7 +7,8 @@
 
 #include "banner_menu/bm.h"
 #include "linear/linear.h"
-
+#include "nonlinear/nonlinear.h"
+#include "primitive/primitive.h"
 //main menu
 void typemain()
 {
@@ -27,16 +28,27 @@ void typemain()
         {
         case 1:
             ds_type_clear_menu("Type options", 0);
-            linearmain();
+            primitivemain();
             ds_type_submenu();
 
-            // printf("inside 1");
-            break;
-        case 2:
             ds_type_clear_menu("Displaying the list! Select another option!", 1);
-            printf("inside 2");
             break;
+
+        case 2:
+            ds_type_clear_menu("Type options", 0);
+            linearmain();
+            ds_type_submenu();
+            break;
+        case 3:
+            ds_type_clear_menu("Type options", 0);
+            nonlinearmain();
+            ds_type_submenu();
+
+            ds_type_clear_menu("Displaying the list! Select another option!", 1);
+            break;
+
         case 0:
+
             // system("clear");
             typeexit = 1;
             ds_type_clear_menu("Main Menu", 0);

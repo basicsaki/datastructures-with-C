@@ -6,7 +6,10 @@
 //decleration of functions
 #include "./banner_menu/bm.h"
 
+#include "./array/array.h"
 #include "./linkedlist/linked.h"
+#include "./queue/queue.h"
+#include "./stack/stack.h"
 
 //main menu
 void linearmain()
@@ -27,9 +30,9 @@ void linearmain()
         {
         case 1:
             linear_clear_menu("Type options", 1);
+            arraymain();
             linear_submenu();
 
-            printf("Coming soon");
             break;
         case 2:
             linear_clear_menu("Linear: Linked list", 1);
@@ -38,6 +41,21 @@ void linearmain()
 
             // printf("inside 2");
             break;
+        case 3:
+            linear_clear_menu("Linear: Linked list", 1);
+            linkedmain();
+            linear_submenu();
+
+            // printf("inside 2");
+            break;
+        case 4:
+            linear_clear_menu("Linear: Linked list", 1);
+            linkedmain();
+            linear_submenu();
+
+            // printf("inside 2");
+            break;
+
         case 0:
             // system("clear");
             linearexit = 1;

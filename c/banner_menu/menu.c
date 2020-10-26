@@ -3,8 +3,9 @@
 void ds_type_submenu()
 {
     printf("\n\n Select a DS type\n\n");
-    printf("1. \tLinear\n");
-    printf("2. \tComplex\n");
+    printf("1. \tPrimitive\n");
+    printf("2. \tLinear\n");
+    printf("3. \tNon Linear\n");
     printf("0. \tBack to the main menu\n");
     printf("\n\n");
 }

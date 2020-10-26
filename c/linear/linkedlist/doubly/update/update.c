@@ -13,7 +13,6 @@ struct node *doublyUpdateAtIndex(struct node *start, int index, int payload)
 
     p = start;
     verboseflag == 1 ? doubly_display_node(p, "STEP (p): Initialize p node as a copy of the start node") : "";
-
     verboseflag == 1 ? doubly_display_node(p, "STEP (p): Check if the index to be updated is the start node") : "";
     if (index == 0)
     {
@@ -51,7 +50,7 @@ struct node *doublyUpdateElement(struct node *start, int element, int payload)
     int position;
 
     p = start;
-    verboseflag == 1 ? doubly_display_node(p, "STEP 2: Initialize p node as a copy of the start node") : "";
+    verboseflag == 1 ? doubly_display_node(p, "STEP (p): Initialize p node as a copy of the start node") : "";
 
     while (p->nextpointer != NULL)
     {

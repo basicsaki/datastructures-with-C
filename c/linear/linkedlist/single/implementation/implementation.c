@@ -23,7 +23,7 @@ struct node *create_linked_list(struct node *start, int length)
         verboseflag == 1 ? display_node(temp, "STEP (temp): Initialize memory for a temp node (payload + pointer) memory") : "";
 
         temp->payload = user_input;
-        verboseflag == 1 ? display_node(temp->payload, "STEP (temp->payload): Set the payload value in temp") : "";
+        verboseflag == 1 ? display_node(temp, "STEP (temp): Set the payload value in temp") : "";
 
         temp->pointer = p;
         verboseflag == 1 ? display_node(temp->pointer, "STEP (temp->pointer): Set temp pointer to p node") : "";
@@ -52,7 +52,7 @@ struct node *insertInBeginning(struct node *start, int payload)
     verboseflag == 1 ? display_node(temp, "STEP (temp):Initialize Temp user element") : "";
 
     temp->payload = payload;
-    verboseflag == 1 ? display_node(temp->payload, "STEP (temp->payload): Set the payload value in temp") : "";
+    verboseflag == 1 ? display_node(temp, "STEP (temp): Set the payload value in temp") : "";
 
     temp->pointer = start;
     verboseflag == 1 ? display_node(temp->pointer, "STEP (temp->pointer):Set the temp pointer to previous start node") : "";
@@ -75,10 +75,10 @@ struct node *insertAtEnd(node *start, int payload)
     verboseflag == 1 ? display_node(temp, "STEP (temp):Initialize Temp user element") : "";
 
     temp->payload = payload;
-    verboseflag == 1 ? display_node(temp->payload, "STEP (temp->payload): Set the payload value in temp node") : "";
+    verboseflag == 1 ? display_node(temp, "STEP (temp): Set the payload value in temp node") : "";
 
     temp->pointer = NULL;
-    verboseflag == 1 ? display_node(temp->pointer, "STEP (temp->pointer):Set the temp pointer to null") : "";
+    verboseflag == 1 ? display_node(temp->pointer, "STEP (temp->pointer): Set the temp pointer to null") : "";
 
     p = start;
     verboseflag == 1 ? display_node(p, "STEP (p): Initialize p node as a copy of the start node for list traversal") : "";
@@ -204,7 +204,7 @@ struct node *insertBefore(node *start, int element, int payload)
     {
 
         temp = (struct node *)malloc(sizeof(struct node));
-        verboseflag == 1 ? display_node(temp, "STEP (temp):Initialize Temp memory") : "";
+        verboseflag == 1 ? display_node(temp, "STEP (temp): Initialize Temp memory") : "";
 
         temp->payload = payload;
         verboseflag == 1 ? display_node(temp, "STEP (temp): TEMP: Set the payload value in temp") : "";

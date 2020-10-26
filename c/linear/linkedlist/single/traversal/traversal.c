@@ -7,7 +7,7 @@ void display_linked_list(struct node *start, char *message)
     p = start;
     if (start == NULL)
     {
-        printf("List is empty\n");
+        printf("List is empty\n\n");
         return;
     }
     while (p->pointer != NULL)
@@ -23,8 +23,8 @@ void display_node(struct node *start, char *message)
     printf("\n%s\n", message);
     if (start == NULL)
     {
-        printf("Node is empty\n");
+        printf("Node is empty\n\n");
         return;
     }
-    verboseflag == 0 ? printf("%d\t\n", start->payload) : printf("%d(MemLocation: %p)-Pointer(: %p)\t\n", start->payload, &start->payload, start->pointer);
+    verboseflag == 0 ? printf("%d\t\n\n", start->payload) : printf("%d(MemLocation: %p)-Pointer(: %p)\t\n\n", start->payload, &start->payload, start->pointer);
 }

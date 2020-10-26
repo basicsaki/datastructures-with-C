@@ -59,13 +59,13 @@ struct node *circularDeleteAtIndex(struct node *end, int index)
     {
 
         temp = p->pointer->pointer;
-        verboseflag == 1 ? circular_display_node(p, "STEP (temp): If yes, set temp as the start element") : "";
+        verboseflag == 1 ? circular_display_node(temp, "STEP (temp): If yes, set temp as the start element") : "";
 
         free(p->pointer);
         verboseflag == 1 ? circular_display_node(p->pointer, "STEP (p->pointer): Free space at p pointer") : "";
 
         p->pointer = temp;
-        verboseflag == 1 ? circular_display_node(p, "STEP (p): Set temp as the new p pointer") : "";
+        verboseflag == 1 ? circular_display_node(p->pointer, "STEP (p->pointer): Set p pointer as temp") : "";
 
         verboseflag == 1 ? circular_display_linked_list(p, "Final linked list") : "";
         press_enter_to_continue();
@@ -74,7 +74,7 @@ struct node *circularDeleteAtIndex(struct node *end, int index)
     }
 
     temp = p->pointer->pointer;
-    verboseflag == 1 ? circular_display_node(p, "STEP (temp): If no, set temp as the next to next element of p") : "";
+    verboseflag == 1 ? circular_display_node(temp, "STEP (temp): If no, set temp as the next to next element of p") : "";
 
     free(p->pointer);
     verboseflag == 1 ? circular_display_node(p->pointer, "STEP (p->pointer): If no, free value at p->pointer") : "";
