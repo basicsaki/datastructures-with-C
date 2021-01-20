@@ -15,3 +15,7 @@ void press_enter_to_continue()
     ch = 0;
     getchar();
 }
+
+void clear(){
+    printf("Inside clear");
+}
